@@ -83,8 +83,8 @@ class WebCamCapture extends React.Component {
 
     HandleSubmit=(event)=>{
     const id=this.state.id;
-    const front=this.state.ifname?this.state.imgfront:sessionStorage.getItem('front');
-    const back=this.state.ibname?this.state.imgback:sessionStorage.getItem('back');
+    const front=this.state.imgfront?this.state.imgfront:sessionStorage.getItem('front');
+    const back=this.state.imgback?this.state.imgback:sessionStorage.getItem('back');
     if(id && front && back)
     {console.log(front.length);
       alert("Succesfully ENTERED:")

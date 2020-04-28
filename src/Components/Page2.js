@@ -3,7 +3,7 @@
 ...redirecting not done */
 
 import React from "react";
-import history from '../history'
+import history from "../history";
 import "../Css/Page1.css";
 import "../Css/Page2.css";
 
@@ -47,7 +47,7 @@ function Register() {
 
 function verifypass(event) {
   event.preventDefault();
-  history.push('/selfie');
+  history.push("/selfie");
   // var ippassword = document.getElementById("password").value;
   // console.log(ippassword);
   // localStorage.setItem("myData", ippassword);
@@ -116,7 +116,7 @@ function FormDetailUser() {
             label="Date of Birth"
             name="dob"
             autoComplete="dob"
-            autoFocus
+            // autoFocus
           />
 
           <div

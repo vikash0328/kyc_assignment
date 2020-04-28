@@ -1,5 +1,5 @@
 import React from "react";
-import '../Css/selfie.css';
+import "../Css/selfie.css";
 import WebCam from "./selfie";
 import { makeStyles, styled } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -11,7 +11,7 @@ import EnhancedEncryptionIcon from "@material-ui/icons/EnhancedEncryption";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import CameraFrontIcon from '@material-ui/icons/CameraFront';
+import CameraFrontIcon from "@material-ui/icons/CameraFront";
 import history from "../history";
 
 const MySkeleton = styled(Skeleton)({
@@ -59,7 +59,7 @@ class TakePhoto extends React.Component {
       this.setState({ retake: !this.state.retake });
     } else if (name === "submit") {
       if (sessionStorage.getItem("img")) {
-          history.push('/docs')
+        history.push("/docs");
         alert("sucessfully submitted");
       } else {
         alert("click your selfie for submit");
@@ -161,7 +161,7 @@ class TakePhoto extends React.Component {
                 </div>
               </CardContent>
               <CardContent>
-                {img ? (
+                {IMAGE ? (
                   <div>
                     <img src={IMAGE} alt="You see your Selfie here " />
                   </div>

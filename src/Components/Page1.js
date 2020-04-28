@@ -89,7 +89,7 @@ function FormUserAuth(props) {
             label="Password"
             name="password"
             autoComplete="password"
-            autoFocus
+            // autoFocus
             type="password"
           />
           <FormControlLabel

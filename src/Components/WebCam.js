@@ -3,7 +3,7 @@ import React from 'react';
 import Webcam from 'react-webcam';
 import { styled } from '@material-ui/core/styles';
 import { compose, spacing, palette } from '@material-ui/system';
-
+import history from "../history";
 const Box = styled('div')(compose(spacing, palette));
 
 
@@ -88,7 +88,7 @@ class WebCamCapture extends React.Component {
     if(id && front && back)
     {console.log(front.length);
       alert("Succesfully ENTERED:")
-      
+      history.push('/final')
     }
     else{
       alert ("Some Field Are Empty")

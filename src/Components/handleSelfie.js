@@ -59,6 +59,7 @@ class TakePhoto extends React.Component {
       this.setState({ retake: !this.state.retake });
     } else if (name === "submit") {
       if (sessionStorage.getItem("img")) {
+        this.webcam.destroy();
         history.push("/docs");
         alert("sucessfully submitted");
       } else {

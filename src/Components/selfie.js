@@ -1,5 +1,6 @@
 function drawvideo(video, context, width, height) {
   context.drawImage(video, 0, 0, width, height);
+
   context.save();
   context.scale(0.95, 0.9);
   context.beginPath();
@@ -23,15 +24,13 @@ class WebCam {
     this.CameraElement = CameraElement;
     this.CanvasElement = CanvasElement;
     this.CanvasCameraElement = CanvasCameraElement;
-
-    this.err_name = "";
   }
   SetAspectRatio(width, height) {
     const aspectratio = width / height;
-    if (width > height)
+
+    if (width >= height)
       this.CameraElement.width = aspectratio * this.CameraElement.height;
     else this.CameraElement.height = this.CameraElement.width / aspectratio;
-    console.log("aspectratio");
   }
   async SetUp() {
     return new Promise((resolve, reject) => {
@@ -42,7 +41,7 @@ class WebCam {
             video: {
               facingMode: "user",
               width: { min: 720, ideal: 1280, max: 1080 },
-              height: { min: 200, ideal: 480, max: 720 },
+              height: { min: 400, ideal: 720, max: 720 },
             },
           })
           .then((MediaStream) => {
@@ -67,8 +66,14 @@ class WebCam {
             );
           })
           .catch(function (err) {
-            alert(err.name + " ; " + err.message);
-            this.err_name = err.name;
+            const errormessage =
+              err.name === "NotAllowedError" ||
+              err.name === "PermissionDeniedError"
+                ? " You denied Permission . if you are using chrome" +
+                  ' At the top right, click More. Settings. At the bottom, click Advanced . Under "Privacy and security," click Content settings.' +
+                  " Camera.Turn Ask before accessing on or off"
+                : err.name;
+            alert({ errormessage });
           });
       } else {
         reject();
@@ -119,6 +124,12 @@ class WebCam {
       },
       false
     );
+  }
+  destroy() {
+    var s = this;
+    s.CameraElement.srcObject.getTracks().forEach((track) => {
+      track.stop();
+    });
   }
 }
 

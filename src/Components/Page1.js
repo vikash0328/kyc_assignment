@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../Css/Page1.css";
-import history from '../history'
+import history from "../history";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -61,11 +61,13 @@ const useStyles = makeStyles((theme) => ({
 function FormUserAuth(props) {
   return (
     <div className="main">
+      <h3 class="text-center default-text">Hi! Welcome to ZestMoney</h3>
+      <h5 class="text-center default-text">One stop KYC solution</h5>
       <img id="loginLogo" src={loginLogo} alt="customer image"></img>
       <Typography id="signInHeading" component="h1" variant="h5">
         Sign in
       </Typography>
-      <div className="App">
+      <div className="Apple">
         <form className="form" onSubmit={verifypass}>
           <TextField
             variant="outlined"
@@ -79,7 +81,6 @@ function FormUserAuth(props) {
             autoFocus
             placeholder="Tony@abc.com"
           />
-
           <TextField
             variant="outlined"
             margin="normal"
@@ -96,14 +97,10 @@ function FormUserAuth(props) {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            type="submit"
-            fullWidth
-            colour="primary"
-            variant="contained"
-          >
-            Sign In
+          <Button className="Tap" type="submit" fullWidth colour="sucess" variant="contained">
+            GET OTP
           </Button>
+        
 
           <Grid container>
             <Grid item xs>

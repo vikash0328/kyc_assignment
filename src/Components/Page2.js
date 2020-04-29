@@ -116,9 +116,10 @@ function FormDetailUser() {
             label="Date of Birth"
             name="dob"
             autoComplete="dob"
+            placeholder="DD/MM/YYYY"
             // autoFocus
           />
-
+          
           <div
             id="genderElement"
             class="custom-control custom-radio custom-control-inline"
@@ -138,10 +139,10 @@ function FormDetailUser() {
             <input
               type="radio"
               class="custom-control-input"
-              id="defaultInline2"
+              id="defaultInline1"
               name="inlineDefaultRadiosExample"
             />
-            <label class="custom-control-label" for="defaultInline2">
+            <label class="custom-control-label" for="defaultInline1">
               Female
             </label>
           </div>
@@ -150,10 +151,10 @@ function FormDetailUser() {
             <input
               type="radio"
               class="custom-control-input"
-              id="defaultInline3"
+              id="defaultInline1"
               name="inlineDefaultRadiosExample"
             />
-            <label class="custom-control-label" for="defaultInline3">
+            <label class="custom-control-label" for="defaultInline1">
               Others
             </label>
           </div>
@@ -165,7 +166,7 @@ function FormDetailUser() {
             colour="primary"
             variant="contained"
           >
-            Next
+            CONTINUE
           </Button>
         </form>
       </div>

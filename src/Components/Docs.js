@@ -7,7 +7,7 @@ class Preview extends React.Component{
     {
         super(props);
          this.state={
-             name:'Swapnil Barai',
+             name:'XYZ',
              dateofbirth:'08/05/1998',
              gender:'MALE',
              img:sessionStorage.getItem('img'),

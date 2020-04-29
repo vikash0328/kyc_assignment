@@ -5,17 +5,18 @@ import WebCamCapture from "./Components/WebCam";
 import FormDetailUser from "./Components/Page2";
 import TakePhoto from "./Components/handleSelfie";
 import Preview from "./Components/Docs";
-export default class App extends React.Component {
-  render() {
+import PrivateRoute from './Components/Utility/PrivateRoutes'
+const App = () => {
+  React.useEffect(() => {
+    // localStorage.setItem("auth",false);
+  }, [])
     return (
       <div className="App">
         <Switch>
           <Route exact path="/">
             <FormUserAuth />
           </Route>
-          <Route exact path="/detail">
-            <FormDetailUser />
-          </Route>
+          <Route exact path="/detail" render={() => <FormDetailUser/>}/>
           <Route path="/selfie">
             {" "}
             <TakePhoto />{" "}
@@ -31,5 +32,5 @@ export default class App extends React.Component {
         </Switch>
       </div>
     );
-  }
 }
+export default App;

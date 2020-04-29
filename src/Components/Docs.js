@@ -1,5 +1,7 @@
 import React from 'react'
+import history from "../history";
 import { withRouter } from 'react-router-dom';
+// import './App.css';
 
 
 class Preview extends React.Component{
@@ -7,25 +9,26 @@ class Preview extends React.Component{
     {
         super(props);
          this.state={
-             name:'XYZ',
-             dateofbirth:'08/05/1998',
-             gender:'MALE',
-             img:sessionStorage.getItem('img'),
-             imgfront:sessionStorage.getItem('front'),
-             imgback:sessionStorage.getItem('back'),
-             id:sessionStorage.getItem('id')
+            name:sessionStorage.getItem('Name'),
+            dateofbirth:sessionStorage.getItem('DOB'),
+            gender:sessionStorage.getItem('gender'),
+            img:sessionStorage.getItem('img'),
+            imgfront:sessionStorage.getItem('front'),
+            imgback:sessionStorage.getItem('back'),
+            id:sessionStorage.getItem('id')
          }
         
     }
     handleonsubmit=(ev)=>{
       const type=ev.target.name;
       if(type==='submit')
-      {
-    //   {  console.log(this.state.imgfront.length);
+      { console.log(this.state.imgfront.length);
           alert('FORM IS SUBMITTED ')
+          history.push("/");
+          window.location.reload();
       }
       ev.preventDefault();
-    }
+    };
     render(){
         return(
          <div className='App-header ' style={{color:'green'}}>
@@ -53,7 +56,7 @@ class Preview extends React.Component{
 
          </div>
         );
-    }
+    };
 
 }
 export default withRouter(Preview);

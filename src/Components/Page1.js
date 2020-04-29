@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../Css/Page1.css";
 import history from "../history";
@@ -20,32 +20,23 @@ import select from "@material-ui/core/Select";
 import menuitem from "@material-ui/core/MenuItem";
 import { FormLabel, RadioGroup, Radio } from "@material-ui/core";
 
-function Register() {
-  var name = document.forms["RegForm"]["Name"];
-  var dob = document.forms["RegForm"]["DOB"];
-  var gender = document.forms["RegForm"]["gender"];
-  if (gender.value == "") {
-    alert("Please select your gender.");
-    gender.focus();
-    return false;
-  }
-  if (typeof Storage !== "undefined") {
-    sessionStorage.setItem("Name", name.value);
-    sessionStorage.setItem("DOB", dob.value);
-    sessionStorage.setItem("gender", gender.value);
-  }
-  return true;
-}
+// function Register() {
+//   var name = document.forms["RegForm"]["Name"];
+//   var dob = document.forms["RegForm"]["DOB"];
+//   var gender = document.forms["RegForm"]["gender"];
+//   if (gender.value == "") {
+//     alert("Please select your gender.");
+//     gender.focus();
+//     return false;
+//   }
+//   if (typeof Storage !== "undefined") {
+//     sessionStorage.setItem("Name", name.value);
+//     sessionStorage.setItem("DOB", dob.value);
+//     sessionStorage.setItem("gender", gender.value);
+//   }
+//   return true;
+// }
 
-function verifypass(event) {
-  event.preventDefault();
-  //password encryption...............
-  //............
-  history.push("/detail");
-  // var ippassword = document.getElementById("password").value;
-  // console.log(ippassword);
-  // localStorage.setItem("myData", ippassword);
-}
 //.....here exists a verify pass function and encryption function has been temparoryly removed
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +50,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FormUserAuth(props) {
+  const [name, setname] = useState([]);
+  const [password, setpassword] = useState([]);
+  
+  const verifypass = (event) => {
+    if ((name == "User" && password == "Admin") || (name == "KYC" && password == "App")) {
+      console.log(name, password);
+      event.preventDefault();
+      //password encryption...............
+      //............
+      localStorage.setItem("auth",true);
+      history.push("/detail");
+    } else {
+      alert("Wrong Credentials");
+      return;
+    }
+
+    // var ippassword = document.getElementById("password").value;
+    // console.log(ippassword);
+    // localStorage.setItem("myData", ippassword);
+  };
+  const handleChangeName = (e) => {
+    setname(e.target.value);
+  };
+  const HandlePassword = (e) => {
+    setpassword(e.target.value);
+  };
   return (
     <div className="main">
       <h3 class="text-center default-text">Hi! Welcome to ZestMoney</h3>
@@ -80,6 +97,7 @@ function FormUserAuth(props) {
             autoComplete="email"
             autoFocus
             placeholder="Tony@abc.com"
+            onChange={handleChangeName}
           />
           <TextField
             variant="outlined"
@@ -92,15 +110,21 @@ function FormUserAuth(props) {
             autoComplete="password"
             // autoFocus
             type="password"
+            onChange={HandlePassword}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button className="Tap" type="submit" fullWidth colour="sucess" variant="contained">
+          <Button
+            className="Tap"
+            type="submit"
+            fullWidth
+            colour="sucess"
+            variant="contained"
+          >
             GET OTP
           </Button>
-        
 
           <Grid container>
             <Grid item xs>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../Css/Page1.css";
 import history from "../history";
@@ -52,6 +52,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FormUserAuth(props) {
+  const [name, setname] = useState([]);
+  const [password, setpassword] = useState([]);
+  
+  const verifypass = (event) => {
+    if ((name == "User" && password == "Admin") || (name == "KYC" && password == "App")) {
+      console.log(name, password);
+      event.preventDefault();
+      //password encryption...............
+      //............
+      localStorage.setItem("auth",true);
+      history.push("/detail");
+    } else {
+      alert("Wrong Credentials");
+      return;
+    }
+
+    // var ippassword = document.getElementById("password").value;
+    // console.log(ippassword);
+    // localStorage.setItem("myData", ippassword);
+  };
+  const handleChangeName = (e) => {
+    setname(e.target.value);
+  };
+  const HandlePassword = (e) => {
+    setpassword(e.target.value);
+  };
   return (
     <div className="main">
       <h3 class="text-center default-text">Hi! Welcome to ZestMoney</h3>
@@ -61,7 +87,7 @@ function FormUserAuth(props) {
         Sign in
       </Typography>
       <div className="App">
-        <form className="form" onSubmit={verifypass}>
+        <div className="form" >
           <TextField
             variant="outlined"
             margin="normal"
@@ -73,6 +99,7 @@ function FormUserAuth(props) {
             autoComplete="email"
             autoFocus
             placeholder="Tony@abc.com"
+            onChange={handleChangeName}
           />
           <TextField
             variant="outlined"
@@ -85,6 +112,7 @@ function FormUserAuth(props) {
             autoComplete="password"
             // autoFocus
             type="password"
+            onChange={HandlePassword}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -93,7 +121,6 @@ function FormUserAuth(props) {
           <Button className="Tap" type="submit" fullWidth colour="sucess" variant="contained" onClick={verifypass} >
             GET OTP
           </Button>
-        
 
           <Grid container>
             <Grid item xs>
@@ -102,7 +129,7 @@ function FormUserAuth(props) {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        </div>
       </div>
     </div>
   );

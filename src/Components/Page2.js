@@ -1,6 +1,6 @@
-/*.........Page 2 code 
-......
-...redirecting not done */
+// .........Page 2 code
+// ......
+// ...redirecting not done
 
 import React from "react";
 import history from "../history";
@@ -9,10 +9,6 @@ import "../Css/Page2.css";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
 import { Redirect } from "react-router-dom";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
@@ -98,6 +94,9 @@ function FormDetailUser() {
             autoComplete="fullName"
             autoFocus
             placeholder="eg.Tony Stark"
+            onChange={(ev) => {
+              sessionStorage.setItem("Name", ev.target.value);
+            }}
           />
           <Typography variant="caption">
             Ensure it matches name on your PAN
@@ -112,10 +111,14 @@ function FormDetailUser() {
             label="Date of Birth"
             name="dob"
             autoComplete="dob"
-            placeholder="DD/MM/YYYY"
+            // placeholder="DD/MM/YYYY"
             // autoFocus
+            type="date"
+            onChange={(ev) => {
+              sessionStorage.setItem("DOB", ev.target.value);
+            }}
           />
-          
+
           <div
             id="genderElement"
             class="custom-control custom-radio custom-control-inline"
@@ -123,8 +126,12 @@ function FormDetailUser() {
             <input
               type="radio"
               class="custom-control-input"
-              id="defaultInline1"
+              id="Male"
               name="inlineDefaultRadiosExample"
+              required
+              onChange={(ev) => {
+                sessionStorage.setItem("gender", ev.target.id);
+              }}
             />
             <label class="custom-control-label" for="defaultInline1">
               Male
@@ -135,8 +142,11 @@ function FormDetailUser() {
             <input
               type="radio"
               class="custom-control-input"
-              id="defaultInline1"
+              id="Female"
               name="inlineDefaultRadiosExample"
+              onChange={(ev) => {
+                sessionStorage.setItem("gender", ev.target.id);
+              }}
             />
             <label class="custom-control-label" for="defaultInline1">
               Female
@@ -147,8 +157,11 @@ function FormDetailUser() {
             <input
               type="radio"
               class="custom-control-input"
-              id="defaultInline1"
+              id="Other"
               name="inlineDefaultRadiosExample"
+              onChange={(ev) => {
+                sessionStorage.setItem("gender", ev.target.id);
+              }}
             />
             <label class="custom-control-label" for="defaultInline1">
               Others

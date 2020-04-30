@@ -1,23 +1,25 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import FormUserAuth from "./Components/Page1";
 import WebCamCapture from "./Components/WebCam";
 import FormDetailUser from "./Components/Page2";
 import TakePhoto from "./Components/handleSelfie";
 import Preview from "./Components/Docs";
-import PrivateRoute from './Components/Utility/PrivateRoutes'
+import Protected from "./Components/Protected.js";
+import history from './history'
+
 const App = () => {
-  React.useEffect(() => {
-    // localStorage.setItem("auth",false);
-  }, [])
-    return (
-      <div className="App">
-        <Switch>
-          <Route exact path="/">
-            <FormUserAuth />
-          </Route>
-          <Route exact path="/detail" render={() => <FormDetailUser/>}/>
-          <Route path="/selfie">
+  return (
+    <div className="App">
+      
+      <Switch>
+        <Route exact path="/" component={FormUserAuth} />
+        <Protected exact path="/detail" component={FormDetailUser} />
+        <Protected exact path="/selfie" component={TakePhoto} />
+        <Protected exact path="/docs" component={WebCamCapture} />
+        <Protected exact path="/final" component={Preview} />
+        {/* <Route path="/selfie">
             {" "}
             <TakePhoto />{" "}
           </Route>
@@ -28,9 +30,9 @@ const App = () => {
           <Route path="/final">
             {" "}
             <Preview />{" "}
-          </Route>
-        </Switch>
-      </div>
-    );
-}
+          </Route> */}
+      </Switch>
+    </div>
+  );
+};
 export default App;

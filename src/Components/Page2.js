@@ -10,14 +10,16 @@ import "../Css/Page2.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Redirect } from "react-router-dom";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 
 // Below belongs to only page 2----------------
 //--------------------
 
 import custo from "../Assets/customer.jpg";
-
+const logOut = () => {
+  localStorage.removeItem("auth");
+  history.push("/");
+};
 function verifypass(event) {
   event.preventDefault();
   history.push("/selfie");
@@ -55,6 +57,9 @@ function FormDetailUser() {
 
   return (
     <div className="main">
+      {localStorage.getItem("auth") ? (
+        <button onClick={logOut}>logout</button>
+      ) : null}
       <p className="heading">
         {" "}
         Help us setup your account{" "}
@@ -92,9 +97,9 @@ function FormDetailUser() {
             label="Date of Birth"
             name="dob"
             autoComplete="dob"
-            // placeholder="DD/MM/YYYY"
-            // autoFocus
-            type="date"
+            type="text"
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => (e.target.type = "text")}
             onChange={(ev) => {
               sessionStorage.setItem("DOB", ev.target.value);
             }}
@@ -117,9 +122,6 @@ function FormDetailUser() {
             <label class="custom-control-label" for="defaultInline1">
               Male
             </label>
-          </div>
-
-          <div class="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
               class="custom-control-input"
@@ -132,9 +134,6 @@ function FormDetailUser() {
             <label class="custom-control-label" for="defaultInline1">
               Female
             </label>
-          </div>
-
-          <div class="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
               class="custom-control-input"

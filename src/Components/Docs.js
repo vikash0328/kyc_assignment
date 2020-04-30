@@ -24,6 +24,7 @@ class Preview extends React.Component{
       if(type==='submit')
       { console.log(this.state.imgfront.length);
           alert('FORM IS SUBMITTED ')
+          localStorage.removeItem("auth")
           history.push("/");
           window.location.reload();
       }

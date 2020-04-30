@@ -9,36 +9,10 @@ import Link from "@material-ui/core/Link";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
-import { Redirect } from "react-router-dom";
-import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
+
+import { makeStyles} from "@material-ui/core/styles";
 
 import loginLogo from "../Assets/login.jpg";
-
-import formControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import select from "@material-ui/core/Select";
-import menuitem from "@material-ui/core/MenuItem";
-import { FormLabel, RadioGroup, Radio } from "@material-ui/core";
-
-// function Register() {
-//   var name = document.forms["RegForm"]["Name"];
-//   var dob = document.forms["RegForm"]["DOB"];
-//   var gender = document.forms["RegForm"]["gender"];
-//   if (gender.value == "") {
-//     alert("Please select your gender.");
-//     gender.focus();
-//     return false;
-//   }
-//   if (typeof Storage !== "undefined") {
-//     sessionStorage.setItem("Name", name.value);
-//     sessionStorage.setItem("DOB", dob.value);
-//     sessionStorage.setItem("gender", gender.value);
-//   }
-//   return true;
-// }
-
-//.....here exists a verify pass function and encryption function has been temparoryly removed
-
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -54,17 +28,20 @@ function FormUserAuth(props) {
   const [password, setpassword] = useState([]);
   
   const verifypass = (event) => {
-    if ((name == "User" && password == "Admin") || (name == "KYC" && password == "App")) {
-      console.log(name, password);
-      event.preventDefault();
-      //password encryption...............
-      //............
-      localStorage.setItem("auth",true);
-      history.push("/detail");
-    } else {
-      alert("Wrong Credentials");
-      return;
-    }
+   event.preventDefault();
+    fetch("http://localhost:8000/users?name=" + name + "&&password=" + password).then((result) => {
+    result.json().then((resp) => {
+      if(resp.length>0){
+            //password encryption...............
+            //............
+            localStorage.setItem("auth","app");
+            history.push("/detail");
+      }
+      else{
+        alert("Wrong Credentials");
+      }
+    })
+  })
 
     // var ippassword = document.getElementById("password").value;
     // console.log(ippassword);
@@ -84,19 +61,19 @@ function FormUserAuth(props) {
       <Typography id="signInHeading" component="h1" variant="h5">
         Sign in
       </Typography>
-      <div className="Apple">
-        <form className="form" onSubmit={verifypass}>
+      <div className="App">
+        <div className="form" >
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            label="UserName"
+            name="username"
+            autoComplete="username"
             autoFocus
-            placeholder="Tony@abc.com"
+            placeholder="Tony@abc"
             onChange={handleChangeName}
           />
           <TextField
@@ -116,24 +93,10 @@ function FormUserAuth(props) {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            className="Tap"
-            type="submit"
-            fullWidth
-            colour="sucess"
-            variant="contained"
-          >
+          <Button className="Tap" type="submit" fullWidth colour="sucess" variant="contained" onClick={verifypass} >
             GET OTP
           </Button>
-
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
+        </div>
       </div>
     </div>
   );

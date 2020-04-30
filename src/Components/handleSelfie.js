@@ -18,7 +18,10 @@ const MySkeleton = styled(Skeleton)({
   alignItems: "center",
   textalign: "center",
 });
-
+const logOut = () => {
+  localStorage.removeItem("auth")
+  history.push("/");
+}
 class TakePhoto extends React.Component {
   constructor(props) {
     super(props);
@@ -107,6 +110,7 @@ class TakePhoto extends React.Component {
 
     return (
       <div className="App-header">
+        {localStorage.getItem("auth") ? <button onClick={logOut}>logout</button> : null}
         <Container>
           <Paper elevation={3}>
             <Card>

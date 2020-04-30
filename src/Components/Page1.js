@@ -9,44 +9,37 @@ import Link from "@material-ui/core/Link";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
-import { Redirect } from "react-router-dom";
-import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
+
+import { makeStyles} from "@material-ui/core/styles";
 
 import loginLogo from "../Assets/login.jpg";
 
-import formControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import select from "@material-ui/core/Select";
-import menuitem from "@material-ui/core/MenuItem";
-import { FormLabel, RadioGroup, Radio } from "@material-ui/core";
 
-function Register() {
-  var name = document.forms["RegForm"]["Name"];
-  var dob = document.forms["RegForm"]["DOB"];
-  var gender = document.forms["RegForm"]["gender"];
-  if (gender.value == "") {
-    alert("Please select your gender.");
-    gender.focus();
-    return false;
-  }
-  if (typeof Storage !== "undefined") {
-    sessionStorage.setItem("Name", name.value);
-    sessionStorage.setItem("DOB", dob.value);
-    sessionStorage.setItem("gender", gender.value);
-  }
-  return true;
-}
+
 
 function verifypass(event) {
-  event.preventDefault();
-  //password encryption...............
-  //............
-  history.push("/detail");
-  // var ippassword = document.getElementById("password").value;
-  // console.log(ippassword);
-  // localStorage.setItem("myData", ippassword);
+ 
+
+  var Username= document.getElementById("email");
+  sessionStorage.setItem("Name",Username.value);
+  var InputPassword=document.getElementById("password");
+  sessionStorage.setItem("password",InputPassword.value );
+
+  if(Username.value==="Admin" && InputPassword.value==="Admin"){
+
+    event.preventDefault();
+    history.push('/detail');
+  }
+  else {
+    alert("Please Check your password ");
+  }
+
+    //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(InputPassword), 'my-secret-key@123').toString();
+  //sessionStorage.setItem("EncryptedPassword",ciphertext);
+  
+
 }
-//.....here exists a verify pass function and encryption function has been temparoryly removed
+
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -67,7 +60,7 @@ function FormUserAuth(props) {
       <Typography id="signInHeading" component="h1" variant="h5">
         Sign in
       </Typography>
-      <div className="Apple">
+      <div className="App">
         <form className="form" onSubmit={verifypass}>
           <TextField
             variant="outlined"
@@ -97,7 +90,7 @@ function FormUserAuth(props) {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button className="Tap" type="submit" fullWidth colour="sucess" variant="contained">
+          <Button className="Tap" type="submit" fullWidth colour="sucess" variant="contained" onClick={verifypass} >
             GET OTP
           </Button>
         

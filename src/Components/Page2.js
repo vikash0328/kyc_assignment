@@ -22,11 +22,7 @@ import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 
 import custo from "../Assets/customer.jpg";
 
-import formControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import select from "@material-ui/core/Select";
-import menuitem from "@material-ui/core/MenuItem";
-import { FormLabel, RadioGroup, Radio } from "@material-ui/core";
+
 
 function Register() {
   var name = document.forms["RegForm"]["Name"];

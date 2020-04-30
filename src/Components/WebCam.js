@@ -7,9 +7,17 @@ import history from "../history";
 import { Typography } from '@material-ui/core';
 import '../Css/WebCam.css';
 
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+import EnhancedEncryptionIcon from "@material-ui/icons/EnhancedEncryption";
+import Skeleton from "@material-ui/lab/Skeleton";
 const Box = styled('div')(compose(spacing, palette));
 
 
+const MySkeleton = styled(Skeleton)({
+  alignItems: "center",
+  textalign: "center",
+});
 class WebCamCapture extends React.Component {
     constructor(props)
     {
@@ -46,11 +54,13 @@ class WebCamCapture extends React.Component {
        {
         this.setState({'clickme':!this.state.isclick});
         this.setState({'retake':!this.state.retake}); 
+        this.setState({'isclick':!this.state.isclick})
        }
        else if(name==='looksgood' && side==="FRONT")
        {this.setState({'side':'BACK'});
         this.setState({'clickme':!this.state.isclick});
         this.setState({'retake':!this.state.retake}); 
+        this.setState({'isclick':!this.state.isclick})
        }
        else if(name==='looksgood' && side==='BACK')
        {
@@ -78,6 +88,7 @@ class WebCamCapture extends React.Component {
          this.setState({'firstclick':true}); 
          this.setState({'clickme':!this.state.clickme});   
          this.setState({'retake':!this.state.retake});
+         this.setState({'isclick':!this.state.isclick})
      
       this.setState({size:img.length/1024});
       
@@ -85,7 +96,7 @@ class WebCamCapture extends React.Component {
     };
 
     HandleSubmit=(event)=>{
-    const id=this.state.id;
+    const id=this.state.id?this.state.id:sessionStorage.getItem('id');
     const front=this.state.imgfront?this.state.imgfront:sessionStorage.getItem('front');
     const back=this.state.imgback?this.state.imgback:sessionStorage.getItem('back');
     if(id && front && back)
@@ -108,10 +119,10 @@ class WebCamCapture extends React.Component {
       };
       const ref=this.setRef;
       
-      const img=this.state.side==='FRONT'?this.state.imgfront:this.state.imgback
+      const img=this.state.side==='FRONT'?sessionStorage.getItem('front'):sessionStorage.getItem('back');
       
       const dis=this.state.isclick;
-  
+
       return (
     <div style={{backgroundColor:'white'}}>
 
@@ -180,23 +191,14 @@ class WebCamCapture extends React.Component {
 
 
           </div>
-
-           
-            
-                
- 
-
-
-         
-         
-          
-          
-           
-           
+   
            
  
         </div>
       );
     }
   }
+
   export default WebCamCapture ;
+  
+    

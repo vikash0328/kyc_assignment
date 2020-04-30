@@ -40,8 +40,8 @@ class TakePhoto extends React.Component {
     console.log(this.context);
     this.video = document.createElement("video");
     this.video.src = "urlToVideo.mp4";
-    this.video.width = "300";
-    this.video.height = "200";
+    this.video.width = "350";
+    this.video.height = "300";
     this.video.play();
     this.webcam = new WebCam(this.video, this.CanvasElement, this.context);
     this.webcam.SetUp().catch(() => {});
@@ -161,8 +161,8 @@ class TakePhoto extends React.Component {
                 ) : (
                   <MySkeleton
                     variant="react"
-                    width={300}
-                    height={300}
+                    width={400}
+                    height={350}
                     animation={false}
                   ></MySkeleton>
                 )}

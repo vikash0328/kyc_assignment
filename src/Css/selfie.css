@@ -1,6 +1,78 @@
+iframe
+{
+    display: none;
+}
+
+
+#PageContainer{
+  padding-top: 2%;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+#HeaderCard{
+  margin-left:2.5%;
+  margin-right:2.5% ;
+  margin-bottom: 3%;
+}
+
+#Headings{
+  padding:2px
+}
+#CaptureCard{
+  margin-left:2.5%;
+  margin-right:2.5% ;
+  margin-bottom: 2%;
+
+}
+#CaptureCardHeading{
+  padding-left: 16px;
+  padding-top:16px;
+  padding-bottom: 5px;
+}
+#CaptureCardContent{
+  padding-left: 40px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom:20px;
+
+}
+
+
+
+
+#SessionHeadings{
+  padding:2px;
+}
+#VerifyLogo{
+  width: 80px;
+  height: 60px;
+  padding-right: 0px;
+
+  float: left;
+}
+
+#ContentText{
+  
+  font-size: 70%;
+}
+
+CardContent *{
+  padding: 5px;
+}
+
+#PreviewImage{
+  padding-top: 5px;
+  align-items: center;
+}
+
+
+
 .App {
     text-align: center;
     background-color:white;
+    margin: 2px;
+    padding: 0px;
   }
   
   .App-logo {
@@ -53,9 +125,20 @@
     font-size:18px;
     text-align:center;
     display:inline-block;
-    padding:20px 20px;
+    padding:2px 0px 5px 10px ;
+
   
   }
+
+  #PreviewCard{
+
+    margin-left:2.5%;
+    margin-right:2.5% ;
+    margin-bottom: 4%;
+  
+  }
+
+
   button:hover {
     border: 1px solid #0099cc;
     background-color: #00aacc;
@@ -69,3 +152,10 @@
     background-color: #cccccc;
     color: #666666;
   }
+
+  .button{
+
+    align-self: center;
+    margin-bottom: 10px;
+  }
+  

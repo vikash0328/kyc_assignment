@@ -14,6 +14,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import CameraFrontIcon from "@material-ui/icons/CameraFront";
 import history from "../history";
 
+import verifyIdentity from '../Assets/verifyIdentity.png';
 const MySkeleton = styled(Skeleton)({
   alignItems: "center",
   textalign: "center",
@@ -107,61 +108,52 @@ class TakePhoto extends React.Component {
 
     return (
       <div className="App-header">
-        <Container>
-          <Paper elevation={3}>
-            <Card>
-              <CardContent>
-                <div className="text">
-                  <strong>Selfie Screen</strong>
-                </div>
-              </CardContent>
+        <Container id="PageContainer">
+          
+            <Card className="HeaderCard" id="HeaderCard">
+
               <CardContent color="primary">
-                <strong>Verify your identity</strong>
-              </CardContent>
-              <CardContent color="secondary">
-                <Typography>
-                  Please upload a Selfie and Provide Personal details for KYC
-                  verification
+                <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img>
+                <Typography id="SessionHeadings"><strong  > Verify your Identity</strong></Typography>
+                <Typography id="ContentText"> 
+                    Please upload a Selfie and provide personal details for KYC verification
                 </Typography>
+                
               </CardContent>
             </Card>
 
-            <br></br>
-            <Card>
-              <CardContent color="primary">
+            
+            <Card id="PreviewCard">
+             <CardContent  id="CaptureCardHeading" color='primary'>
                 <strong> Take a Selfie</strong>
               </CardContent>
-              <CardContent color="secondary">
+              <CardContent color='secondary' id="CaptureCardContent" > 
                 {" "}
-                <Typography>
+                <Typography id="ContentText">
                   Make sure your whole face is clearly visible without any glare
                   or blur.Make sure that your whole face will fit inside oval
                 </Typography>{" "}
               </CardContent>
-              <CardActions>{clickbutton}</CardActions>
-            </Card>
 
-            <br></br>
-            <Card>
               <CardMedia>
                 {" "}
                 <canvas id="cancamera" width="300" height="200"></canvas>
               </CardMedia>
+              <CardActions>{clickbutton}</CardActions>
             </Card>
 
-            <Card>
-              <CardActions>
-                {retakebutton} <span></span> {looksgoodbutton}
-              </CardActions>
-            </Card>
-            <hr></hr>
-            <Card>
-              <CardContent>
+
+
+ 
+            <Card id="CaptureCard">
+              <CardContent id="CaptureCardHeading">
                 <div className="text">
                   <strong> Preview</strong>
                 </div>
               </CardContent>
-              <CardContent>
+
+              
+              <CardContent id="PreviewImage">
                 {IMAGE ? (
                   <div>
                     <img src={IMAGE} alt="You see your Selfie here " />
@@ -169,14 +161,20 @@ class TakePhoto extends React.Component {
                 ) : (
                   <MySkeleton
                     variant="react"
-                    width={200}
+                    width={300}
                     height={200}
                     animation={false}
                   ></MySkeleton>
                 )}
               </CardContent>
 
-              <CardContent>
+              <CardActions>
+                {retakebutton} <span></span> {looksgoodbutton}
+              </CardActions>
+
+
+              <CardContent id="ContentText">
+
                 <EnhancedEncryptionIcon /> Your Photo will be used only for KYC
                 purpose
               </CardContent>
@@ -190,7 +188,7 @@ class TakePhoto extends React.Component {
                 SAVE & CONTINUE
               </button>
             </Card>
-          </Paper>
+         
         </Container>
       </div>
     );

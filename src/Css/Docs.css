@@ -1,7 +1,25 @@
 
+#DocsMain{
+    width:100%;
+    background-color: black;
+}
+
+  #PageContainer{
+      background-color: ivory;
+      width: initial;
+    padding-top: 2%;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+
+  
+
+
+
 
 #DocsBox{
-
+    
     background-color: white;
     padding-top: 4%;
     margin-top: 1%;
@@ -43,33 +61,6 @@ hr{
     color: green;
 }
 
-div.at-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  .at-item {
-    color: #3079ed;
-    animation-name: focus-in-contract;
-    animation-duration: 1s;
-    animation-timing-function: ease;
-    animation-delay: 0s;
-    animation-iteration-count: 1;
-    animation-direction: normal;
-    animation-fill-mode: none;
-  }
-  @keyframes focus-in-contract {
-    0%{
-      letter-spacing: 1em;
-      filter: blur(12px);
-      opacity: 0;
-    }
-    100%{
-      filter: blur(0);
-      opacity: 1;
-    }
-  }
 
   #DocsImage{
     border-radius:16px;
@@ -77,3 +68,5 @@ div.at-container {
     -webkit-border-radius:16px;
     margin-top: 10px;
   }
+
+

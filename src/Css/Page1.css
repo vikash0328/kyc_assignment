@@ -32,8 +32,28 @@
   
 
 
+  #genderElement{
+    margin-bottom: 2%;
+    margin-top: 4%;
+  }
+  .heading{
+    margin: 0em;
+    padding: 1%;
+    font-weight: bolder;
+    text-align: left;
+    margin-left: 2%;
+    margin-right: 2%;
+   line-height: 1.9;
+   margin-top: 3%;
+  }
   
- 
+  #cus{
+    width:60px;
+    height:60px;
+    float: left;
+    margin-right: 3%;
+  }
+  
   .header{
   
     text-align: center;
@@ -54,7 +74,10 @@
   
   }
   
- 
+  .GenderEdit{
+    font-size: 20px;
+  }
+  
   
   #submitButton{
     margin-top: 3%;

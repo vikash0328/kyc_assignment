@@ -1,0 +1,79 @@
+
+
+#DocsBox{
+
+    background-color: white;
+    padding-top: 4%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    padding-bottom: 5%;
+
+  -webkit-border-radius: 12px 12px 12px 12px;
+  -moz-border-radius: 12px 12px 12px 12px;
+  border-radius: 12px 12px 12px 12px;
+  -webkit-box-shadow:-0px 0px 28px 0px #000000 inset;
+-moz-box-shadow:-0px 0px 28px 0px #000000 inset;
+box-shadow:-0px 0px 28px 0px #000000 inset;
+
+
+
+}
+strong{
+    color: green;
+}
+div{
+    color:black;
+}
+
+#DocsHeading{
+    margin-top: 2%;
+
+    font-size: 25px;
+    color: green;
+}
+
+#DocsSelfieHeading{
+
+    font-size: 25px;
+}
+
+hr{
+    color: green;
+}
+
+div.at-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .at-item {
+    color: #3079ed;
+    animation-name: focus-in-contract;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+  }
+  @keyframes focus-in-contract {
+    0%{
+      letter-spacing: 1em;
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100%{
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+
+  #DocsImage{
+    border-radius:16px;
+    -moz-border-radius:16px;
+    -webkit-border-radius:16px;
+    margin-top: 10px;
+  }

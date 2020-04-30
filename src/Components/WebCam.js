@@ -149,7 +149,7 @@ class WebCamCapture extends React.Component {
 
       </div>
 
-
+      <div> <Button id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={!this.state.isclick} onClick={this.capture}>CLICK HERE</Button></div>
         <div id="WebCamBox">
         { dis ? <div> 
           <Typography variant="subtitle1" id="WebCamText">
@@ -158,7 +158,7 @@ class WebCamCapture extends React.Component {
          
           </Typography>
              
-          <div> <Button id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={this.state.clickme} onClick={this.capture}>CLICK HERE</Button></div>
+          
 
           {this.state.looksgood?  <Box id="WebCamImage" color='white'> <Webcam id="WebCamImage" audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
                        width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}</div>:null  }

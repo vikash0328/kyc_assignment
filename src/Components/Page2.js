@@ -17,6 +17,7 @@ import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 //--------------------
 
 import custo from "../Assets/customer.jpg";
+var CryptoJS = require("crypto-js");
 
 
 
@@ -39,6 +40,13 @@ function Register() {
 
 function verifypass(event) {
   event.preventDefault();
+  var Name = CryptoJS.AES.encrypt(JSON.stringify(sessionStorage.getItem('Name')), 'my-secret-key@123').toString();
+  var DOB = CryptoJS.AES.encrypt(JSON.stringify(sessionStorage.getItem('DOB')), 'my-secret-key@123').toString();
+  var gender = CryptoJS.AES.encrypt(JSON.stringify(sessionStorage.getItem('gender')), 'my-secret-key@123').toString();
+  sessionStorage.setItem('Name',Name);
+  sessionStorage.setItem('DOB',DOB);
+  sessionStorage.setItem('gender',gender);
+  console.log(gender);
   history.push("/selfie");
   // var ippassword = document.getElementById("password").value;
   // console.log(ippassword);

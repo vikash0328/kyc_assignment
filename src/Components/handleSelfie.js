@@ -161,8 +161,8 @@ class TakePhoto extends React.Component {
                 ) : (
                   <MySkeleton
                     variant="react"
-                    width={200}
-                    height={200}
+                    width={300}
+                    height={300}
                     animation={false}
                   ></MySkeleton>
                 )}

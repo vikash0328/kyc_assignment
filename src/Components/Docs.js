@@ -36,7 +36,7 @@ class Preview extends React.Component{
 <div id="DocsBox" >
        <card>
            <cardcontent id="DocsHeading"> 
-           <strong>Preview Page</strong>
+           <strong id="StrongText" >Preview Page</strong>
            </cardcontent>
        </card>
        
@@ -44,9 +44,9 @@ class Preview extends React.Component{
        <card>
            
            <cardcontent>
-             <div><strong>Name:</strong >{this.state.name}</div>
-             <div><strong>Date Of Birth:</strong> {this.state.dateofbirth}</div>
-             <div><strong>Gender:</strong>{this.state.gender}</div>
+             <div><strong id="StrongText" >Name:</strong >{this.state.name}</div>
+             <div><strong id="StrongText" >Date Of Birth:</strong> {this.state.dateofbirth}</div>
+             <div><strong id="StrongText" >Gender:</strong>{this.state.gender}</div>
 
            </cardcontent>
        </card>                     
@@ -54,7 +54,7 @@ class Preview extends React.Component{
    <div id="DocsBox">
   
 
-        <div id="DocsSelfieHeading"><strong>Selfie:</strong></div>
+        <div id="DocsSelfieHeading"><strong id="StrongText" >Selfie:</strong></div>
         <div><img src={this.state.img} id="DocsImage" alt='Selfie'></img></div>
         <hr style={{width:'80%'}}/>
 
@@ -62,7 +62,7 @@ class Preview extends React.Component{
 
     <div id="DocsBox">   
  
-    <div id="DocsSelfieHeading"> <strong>Goverment ID:</strong>{this.state.id}</div>
+    <div id="DocsSelfieHeading"> <strong id="StrongText">Goverment ID:</strong>{this.state.id}</div>
     <hr style={{width:'60%'}}/>
     
     <div><img src={this.state.imgfront} id="DocsImage" alt='front side of document'></img></div>

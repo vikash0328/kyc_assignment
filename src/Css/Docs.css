@@ -38,7 +38,7 @@ box-shadow:-0px 0px 28px 0px #000000 inset;
 
 
 }
-strong{
+#StrongText{
     color: green;
 }
 div{
@@ -60,6 +60,7 @@ div{
 hr{
     color: green;
 }
+
 
 
   #DocsImage{

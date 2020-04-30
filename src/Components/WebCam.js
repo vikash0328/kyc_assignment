@@ -1,9 +1,12 @@
 import React from 'react';
-
+import Button from '@material-ui/core/Button';
 import Webcam from 'react-webcam';
 import { styled } from '@material-ui/core/styles';
 import { compose, spacing, palette } from '@material-ui/system';
 import history from "../history";
+import { Typography } from '@material-ui/core';
+import '../Css/WebCam.css';
+
 const Box = styled('div')(compose(spacing, palette));
 
 
@@ -110,35 +113,88 @@ class WebCamCapture extends React.Component {
       const dis=this.state.isclick;
   
       return (
-        <div style={{backgroundColor:'orange'}}>
+    <div style={{backgroundColor:'white'}}>
 
-        <Box color='white' bgcolor='palevioletred'p={2}><strong>SELECT THE GOVERMENT ID</strong>
-         <form onClick={this.changeHandler}>
-    <div><button type='radio'  name='ADHAR' disabled={dis}  style={{marginRight:'10px'} ,{marginTop:"5px"},{backgroundColor:'blue'}}>ADHAR CARD</button>
-         <button type='radio'  name='PAN'style={{marginTop:"5px"},{marginLeft:'50px'},{backgroundColor:'blue'}} disabled={dis} >PAN CARD</button></div>
-         <button  name='LICENSE'  style={{marginTop:'10px'},{backgroundColor:'blue'}}disabled={dis} >Driving LICENSE</button>
-         </form>  </Box><hr></hr>
-         <Box color="white" bgcolor="lightblue" p={2}>TAKE PICTURE OF DOCUMENT FOR KYC SUBMITION:</Box>
+      <div id="WebCamBox">
+          <Typography >
+            <strong>SELECT THE GOVERNMENT ID</strong>
+          </Typography>
 
-         { dis ? <div> <div>TAKE THE PICTURE OF {this.state.side} SIDE OF YOUR {this.state.id}</div>
-            <div> <button name='clickme' disabled={this.state.clickme} onClick={this.capture}>CLICK HERE</button></div>
-                {this.state.looksgood?  <Box color='white'> <Webcam audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
-            width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}</div>:null  }
+          <form onClick={this.changeHandler}>
+            <div id="WebCamButtonRow" >
+              <Button id="IdSelectionButton" className="Tap" type='radio'  name='ADHAR' disabled={dis}  style={{marginRight:'10px'} ,{marginTop:"5px"},{backgroundColor:'008000'}}>ADHAR CARD</Button>
+              <Button id="IdSelectionButton" className="Tap" type='radio'  name='PAN'style={{marginTop:"5px"},{marginLeft:'50px'},{backgroundColor:'008000'}} disabled={dis} >PAN CARD</Button>
+            </div>
+              <Button id="IdSelectionButton" className="Tap" name='LICENSE'  style={{marginTop:'10px'},{backgroundColor:'008000'}}disabled={dis} >Driving LICENSE</Button>
+          </form>
 
-                   <form >
-                   <div> <button type='radio' name='retake' style={{marginRight:'50px'}} disabled={this.state.retake} onClick={this.changeHandler}>RETAKE</button>
-                   <span>  </span>
-                  <button type='radio'name="looksgood"  style={{marginLeft:'10px'}} disabled={this.state.retake} onClick={this.changeHandler} >LOOKS GOOD</button>
-                   </div><br></br></form>
+          <Box color="black" bgcolor="white" p={2}>
+            <Typography>
+            <strong>TAKE PICTURE OF DOCUMENT FOR KYC SUBMITION:</strong>
+            </Typography>
+          </Box>
+
+
+
+      </div>
+
+
+        <div id="WebCamBox">
+        { dis ? <div> 
+          <Typography variant="subtitle1" id="WebCamText">
          
-          {this.state.firstclick?<div><div>The Preview of {this.state.side} side of {this.state.id} :</div><div><img  src={img}/></div> </div>:null}
+            Take the picture of  {this.state.side} side of your {this.state.id}
+         
+          </Typography>
+             
+          <div> <Button id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={this.state.clickme} onClick={this.capture}>CLICK HERE</Button></div>
+
+          {this.state.looksgood?  <Box id="WebCamImage" color='white'> <Webcam id="WebCamImage" audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
+                       width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}</div>:null  }
+
+
+        </div>
+  
+         
+          <div id="WebCamBox" >
+
+          <form >
+            <div id="WebCamButtonRow"> 
+            <Button id="IdSelectionButton" className="Tap" color="sucess" type='radio' name='retake' style={{marginRight:'50px'}} disabled={this.state.retake} onClick={this.changeHandler}>RETAKE</Button>
+                   
+              <Button id="IdSelectionButton" className="Tap" color="sucess" type='radio'name="looksgood"  style={{marginLeft:'10px'}} disabled={this.state.retake} onClick={this.changeHandler} >LOOKS GOOD</Button>
+            </div>
+          </form>
+
+                   {this.state.firstclick?<div><div>
+                     <strong>
+                     The Preview of {this.state.side} side of {this.state.id} :  
+                     </strong>
+                     </div>
+                   <div>
+                     <img id="WebCamImage" src={img}/>
+                    </div> </div>:null}
+
+                   <p>{this.state.id}</p>
+            <Button id="IdSelectionButton" className="Tap" type='submit' name='submit'onClick={this.HandleSubmit}>SUBMIT</Button>
+
+
+          </div>
+
+           
+            
+                
+ 
+
+
+         
+         
           
           
            
            
            
-            <p>{this.state.id}</p><hr></hr>
-            <button type='submit' name='submit'onClick={this.HandleSubmit}>SUBMIT</button>
+ 
         </div>
       );
     }

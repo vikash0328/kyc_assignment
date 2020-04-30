@@ -17,13 +17,15 @@ class Preview extends React.Component{
             imgfront:sessionStorage.getItem('front'),
             imgback:sessionStorage.getItem('back'),
             id:sessionStorage.getItem('id')
+
          }
         
     }
     handleonsubmit=(ev)=>{
       const type=ev.target.name;
       if(type==='submit')
-      { console.log(this.state.imgfront.length);
+      {
+    //   {  console.log(this.state.imgfront.length);
           alert('FORM IS SUBMITTED ')
           history.push("/");
           window.location.reload();

@@ -15,32 +15,6 @@ import { makeStyles} from "@material-ui/core/styles";
 import loginLogo from "../Assets/login.jpg";
 
 
-
-
-function verifypass(event) {
- 
-
-  var Username= document.getElementById("email");
-  sessionStorage.setItem("Name",Username.value);
-  var InputPassword=document.getElementById("password");
-  sessionStorage.setItem("password",InputPassword.value );
-
-  if(Username.value==="Admin" && InputPassword.value==="Admin"){
-
-    event.preventDefault();
-    history.push('/detail');
-  }
-  else {
-    alert("Please Check your password ");
-  }
-
-    //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(InputPassword), 'my-secret-key@123').toString();
-  //sessionStorage.setItem("EncryptedPassword",ciphertext);
-  
-
-}
-
-
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -87,7 +61,7 @@ function FormUserAuth(props) {
         Sign in
       </Typography>
       <div className="App">
-        <div className="form" >
+        <form className="form" onSubmit={verifypass}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -118,7 +92,13 @@ function FormUserAuth(props) {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button className="Tap" type="submit" fullWidth colour="sucess" variant="contained" onClick={verifypass} >
+          <Button
+            className="Tap"
+            type="submit"
+            fullWidth
+            colour="sucess"
+            variant="contained"
+          >
             GET OTP
           </Button>
 
@@ -129,7 +109,7 @@ function FormUserAuth(props) {
               </Link>
             </Grid>
           </Grid>
-        </div>
+        </form>
       </div>
     </div>
   );

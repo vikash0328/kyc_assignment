@@ -123,7 +123,7 @@ class WebCamCapture extends React.Component {
          { dis ? <div> <div>TAKE THE PICTURE OF {this.state.side} SIDE OF YOUR {this.state.id}</div>
             <div> <button name='clickme' disabled={this.state.clickme} onClick={this.capture}>CLICK HERE</button></div>
                 {this.state.looksgood?  <Box color='white'> <Webcam audio={false} height={300} ref={ref} screenshotFormat="image/jpeg"
-            width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}</div>:null  }
+            width={800} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}</div>:null  }
 
                    <form >
                    <div> <button type='radio' name='retake' style={{marginRight:'50px'}} disabled={this.state.retake} onClick={this.changeHandler}>RETAKE</button>

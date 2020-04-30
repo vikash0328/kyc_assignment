@@ -39,6 +39,7 @@ function FormUserAuth(props) {
       }
       else{
         alert("Wrong Credentials");
+        window.location.reload()
       }
     })
   })

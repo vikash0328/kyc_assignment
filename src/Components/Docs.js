@@ -4,14 +4,17 @@ import Container from '@material-ui/core/Container';
 import '../Css/Docs.css';
 import { green } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
+import history from '../history'
+var CryptoJS = require("crypto-js");
+
 class Preview extends React.Component{
     constructor(props)
     {
         super(props);
          this.state={
-             name:'XYZ',
-             dateofbirth:'08/05/1998',
-             gender:'MALE',
+             name: JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('Name'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)),
+             dateofbirth:JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('DOB'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)),
+             gender:JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('gender'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)),
              img:sessionStorage.getItem('img'),
              imgfront:sessionStorage.getItem('front'),
              imgback:sessionStorage.getItem('back'),
@@ -25,6 +28,9 @@ class Preview extends React.Component{
       {
     //   {  console.log(this.state.imgfront.length);
           alert('FORM IS SUBMITTED ')
+          localStorage.removeItem("auth")
+          history.push("/");
+          window.location.reload();
       }
       ev.preventDefault();
     }

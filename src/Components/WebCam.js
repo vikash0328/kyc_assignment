@@ -1,11 +1,11 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Webcam from 'react-webcam';
-import { styled } from '@material-ui/core/styles';
-import { compose, spacing, palette } from '@material-ui/system';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Webcam from "react-webcam";
+import { styled } from "@material-ui/core/styles";
+import { compose, spacing, palette } from "@material-ui/system";
 import history from "../history";
-import { Typography } from '@material-ui/core';
-import '../Css/WebCam.css';
+import { Typography } from "@material-ui/core";
+import "../Css/WebCam.css";
 
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
@@ -15,104 +15,86 @@ import verifyIdentity from '../Assets/SelfiePage1.png';
 import Card from '@material-ui/core/Card';
 const Box = styled('div')(compose(spacing, palette));
 
-
-const MySkeleton = styled(Skeleton)({
-  alignItems: "center",
-  textalign: "center",
-});
 class WebCamCapture extends React.Component {
-    constructor(props)
-    {
-        super(props);
-        this.state={
-            imgfront:"",
-            imgback:"",
-            size:'',
-            id:'',
-            isclick:false,
-            side:'FRONT',
-            clickme:false,
-            retake:true,
-            firstclick:false,
-            looksgood:true
-        };
-
-    }
-   
-    setRef = webcam => {
-      this.webcam = webcam;
-    }
-  
-     changeHandler=(event)=>{
-       const name=event.target.name;
-      const side=this.state.side;
-       if(name==="ADHAR" || name==="PAN" || name==="LICENSE")
-       {
-      this.setState({'id':name});
-      sessionStorage.setItem('id', name);
-      this.setState({'isclick':!this.state.isclick});
-       }
-       else if(name==='retake')
-       {
-        this.setState({'clickme':!this.state.isclick});
-        this.setState({'retake':!this.state.retake}); 
-        this.setState({'isclick':!this.state.isclick})
-       }
-       else if(name==='looksgood' && side==="FRONT")
-       {this.setState({'side':'BACK'});
-        this.setState({'clickme':!this.state.isclick});
-        this.setState({'retake':!this.state.retake}); 
-        this.setState({'isclick':!this.state.isclick})
-       }
-       else if(name==='looksgood' && side==='BACK')
-       {
-        this.setState({'looksgood':!this.state.looksgood});
-        this.setState({'retake':!this.state.retake});
-        
-       }
-      event.preventDefault();
-     }
-
-
-
-    capture = (event) => {
-      
-        const img=this.webcam.getScreenshot();
-        if(this.state.side==='FRONT')
-        {
-          this.setState({imgfront:img });
-          sessionStorage.setItem('front', img);
-        }
-        else if(this.state.side==='BACK'){
-            this.setState({imgback:img });
-            sessionStorage.setItem('back', img);
-         }
-         this.setState({'firstclick':true}); 
-         this.setState({'clickme':!this.state.clickme});   
-         this.setState({'retake':!this.state.retake});
-         this.setState({'isclick':!this.state.isclick})
-     
-      this.setState({size:img.length/1024});
-      
-      event.preventDefault();
+  constructor(props) {
+    super(props);
+    this.state = {
+      imgfront: "",
+      imgback: "",
+      size: "",
+      id: "",
+      isclick: false,
+      side: "FRONT",
+      clickme: false,
+      retake: true,
+      firstclick: false,
+      looksgood: true,
     };
+  }
 
-    HandleSubmit=(event)=>{
-    const id=this.state.id?this.state.id:sessionStorage.getItem('id');
-    const front=this.state.imgfront?this.state.imgfront:sessionStorage.getItem('front');
-    const back=this.state.imgback?this.state.imgback:sessionStorage.getItem('back');
-    if(id && front && back)
-    {console.log(front.length);
-      alert("Succesfully ENTERED:")
-      history.push('/final')
+  setRef = (webcam) => {
+    this.webcam = webcam;
+  };
+
+  changeHandler = (event) => {
+    const name = event.target.name;
+    const side = this.state.side;
+    if (name === "ADHAR" || name === "PAN" || name === "LICENSE") {
+      this.setState({ id: name });
+      sessionStorage.setItem("id", name);
+      this.setState({ isclick: !this.state.isclick });
+    } else if (name === "retake") {
+      this.setState({ clickme: !this.state.isclick });
+      this.setState({ retake: !this.state.retake });
+    } else if (name === "looksgood" && side === "FRONT") {
+      this.setState({ side: "BACK" });
+      this.setState({ clickme: !this.state.isclick });
+      this.setState({ retake: !this.state.retake });
+    } else if (name === "looksgood" && side === "BACK") {
+      this.setState({ looksgood: !this.state.looksgood });
+      this.setState({ retake: !this.state.retake });
     }
-    else{
-      alert ("Some Field Are Empty")
-    }
-      
     event.preventDefault();
+  };
+
+  capture = (event) => {
+    const img = this.webcam.getScreenshot();
+    if (this.state.side === "FRONT") {
+      this.setState({ imgfront: img });
+      sessionStorage.setItem("front", img);
+    } else if (this.state.side === "BACK") {
+      this.setState({ imgback: img });
+      sessionStorage.setItem("back", img);
+    }
+    this.setState({ firstclick: true });
+    this.setState({ clickme: !this.state.clickme });
+    this.setState({ retake: !this.state.retake });
+
+    this.setState({ size: img.length / 1024 });
+
+    event.preventDefault();
+  };
+
+  HandleSubmit = (event) => {
+    const id = this.state.id;
+    const front = this.state.imgfront
+      ? this.state.imgfront
+      : sessionStorage.getItem("front");
+    const back = this.state.imgback
+      ? this.state.imgback
+      : sessionStorage.getItem("back");
+    if (id && front && back) {
+      console.log(front.length);
+      alert("Succesfully ENTERED:");
+      history.push("/final");
+    } else {
+      alert("Some Field Are Empty");
     }
   
+
+event.preventDefault();
+};
+
     render() {
       const videoConstraints = {
         width: 1280,
@@ -121,9 +103,10 @@ class WebCamCapture extends React.Component {
       };
       const ref=this.setRef;
       
-      const img=this.state.side==='FRONT'?sessionStorage.getItem('front'):sessionStorage.getItem('back');
-      
-      const dis=this.state.isclick;
+      const img =
+      this.state.side === "FRONT" ? this.state.imgfront : this.state.imgback;
+
+    const dis = this.state.isclick;
 
       return (
     <div style={{backgroundColor:'white'}}>
@@ -151,8 +134,7 @@ class WebCamCapture extends React.Component {
               <Button id="WebCamPageTwoButtons" className="Tap" name='LICENSE'  style={{marginTop:'10px'},{backgroundColor:'008000'}}disabled={dis} >Driving LICENSE</Button>
           </form>
 
-
-
+        </div>
 
 
         { dis ? <div> 
@@ -173,48 +155,45 @@ class WebCamCapture extends React.Component {
                        </div>:null  }
 
 
-        </div>
+     
   
          
           <div id="WebCamBox" >
 
-          <form >
 
-          </form>
 
-                   {this.state.firstclick?<div><div>
-                     <strong>
-                     The Preview of {this.state.side} side of {this.state.id} :  
-                     </strong>
-                     </div>
+                   {this.state.firstclick?
                    <div>
-                     <img id="WebCamImage" src={img}/>
-                    </div>
+                     <div>
+                      <strong>
+                         The Preview of {this.state.side} side of {this.state.id} :  
+                      </strong>
+                     </div>
+                       <div>
+                        <img id="WebCamImage" src={img}/>
+                       </div>
                     
                     <div id="WebCamButtonRow"> 
                       <Button id="WebCamPageTwoButtons" className="Tap" color="sucess" type='radio' name='retake'  disabled={this.state.retake} onClick={this.changeHandler}>RETAKE</Button>
                    
                        <Button id="WebCamPageTwoButtons" className="Tap" color="sucess" type='radio'name="looksgood"   disabled={this.state.retake} onClick={this.changeHandler} >LOOKS GOOD</Button>
-                  </div>
+                    </div>
 
-                  <p>{this.state.id}</p>
-                       <Button fullWidth id="WebCamPageSubmit" className="Tap" type='submit' name='submit'onClick={this.HandleSubmit}>SUBMIT</Button>
+                       <p>{this.state.id}</p>
+                       <Button fullWidth id="WebCamPageSubmit" className="Tap" type='submit' name='submit'onClick={this.HandleSubmit}>
+                         SUBMIT
+                        </Button>
                   
-                     </div>:null}
+                    </div>:null}
 
                    
  
 
 
-          </div>
-   
-           
- 
-        </div>
-      );
-    }
-  }
-
-  export default WebCamCapture ;
-  
+       </div>
+      </div>
     
+      );
+                   }
+}
+export default WebCamCapture;

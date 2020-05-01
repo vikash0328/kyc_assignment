@@ -11,6 +11,8 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import EnhancedEncryptionIcon from "@material-ui/icons/EnhancedEncryption";
 import Skeleton from "@material-ui/lab/Skeleton";
+import verifyIdentity from '../Assets/SelfiePage1.png';
+import Card from '@material-ui/core/Card';
 const Box = styled('div')(compose(spacing, palette));
 
 
@@ -126,31 +128,33 @@ class WebCamCapture extends React.Component {
       return (
     <div style={{backgroundColor:'white'}}>
 
+            <Card className="HeaderCard" id="HeaderCard">
+              <h3 id="SelfiePageDefault" class="text-center default-text">Please verify your Identity</h3>
+
+             <p id="SelfiePageHeading" className="heading">
+
+              <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img> 
+                Please provide personal details for KYC verification
+             </p>
+
+            </Card>
+
+
       <div id="WebCamBox">
-          <Typography >
-            <strong>SELECT THE GOVERNMENT ID</strong>
-          </Typography>
+      <h3 id="SelfiePageDefault" class="text-center default-text">Select The government ID</h3>
 
           <form onClick={this.changeHandler}>
             <div id="WebCamButtonRow" >
-              <Button id="IdSelectionButton" className="Tap" type='radio'  name='ADHAR' disabled={dis}  style={{marginRight:'10px'} ,{marginTop:"5px"},{backgroundColor:'008000'}}>ADHAR CARD</Button>
-              <Button id="IdSelectionButton" className="Tap" type='radio'  name='PAN'style={{marginTop:"5px"},{marginLeft:'50px'},{backgroundColor:'008000'}} disabled={dis} >PAN CARD</Button>
+              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='ADHAR' disabled={dis}  style={{marginRight:'10px'} ,{marginTop:"5px"},{backgroundColor:'008000'}}>ADHAR CARD</Button>
+              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='PAN'style={{marginTop:"5px"},{marginLeft:'50px'},{backgroundColor:'008000'}} disabled={dis} >PAN CARD</Button>
             </div>
-              <Button id="IdSelectionButton" className="Tap" name='LICENSE'  style={{marginTop:'10px'},{backgroundColor:'008000'}}disabled={dis} >Driving LICENSE</Button>
+              <Button id="WebCamPageTwoButtons" className="Tap" name='LICENSE'  style={{marginTop:'10px'},{backgroundColor:'008000'}}disabled={dis} >Driving LICENSE</Button>
           </form>
 
-          <Box color="black" bgcolor="white" p={2}>
-            <Typography>
-            <strong>TAKE PICTURE OF DOCUMENT FOR KYC SUBMITION:</strong>
-            </Typography>
-          </Box>
 
 
 
-      </div>
 
-
-        <div id="WebCamBox">
         { dis ? <div> 
           <Typography variant="subtitle1" id="WebCamText">
          
@@ -158,10 +162,15 @@ class WebCamCapture extends React.Component {
          
           </Typography>
              
-          <div> <Button id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={this.state.clickme} onClick={this.capture}>CLICK HERE</Button></div>
+        
 
           {this.state.looksgood?  <Box id="WebCamImage" color='white'> <Webcam id="WebCamImage" audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
-                       width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}</div>:null  }
+                       width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}
+                       
+                       <Button 
+                       fullWidth 
+                       id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={this.state.clickme} onClick={this.capture}>CLICK HERE</Button>
+                       </div>:null  }
 
 
         </div>
@@ -170,11 +179,7 @@ class WebCamCapture extends React.Component {
           <div id="WebCamBox" >
 
           <form >
-            <div id="WebCamButtonRow"> 
-            <Button id="IdSelectionButton" className="Tap" color="sucess" type='radio' name='retake' style={{marginRight:'50px'}} disabled={this.state.retake} onClick={this.changeHandler}>RETAKE</Button>
-                   
-              <Button id="IdSelectionButton" className="Tap" color="sucess" type='radio'name="looksgood"  style={{marginLeft:'10px'}} disabled={this.state.retake} onClick={this.changeHandler} >LOOKS GOOD</Button>
-            </div>
+
           </form>
 
                    {this.state.firstclick?<div><div>
@@ -184,10 +189,21 @@ class WebCamCapture extends React.Component {
                      </div>
                    <div>
                      <img id="WebCamImage" src={img}/>
-                    </div> </div>:null}
+                    </div>
+                    
+                    <div id="WebCamButtonRow"> 
+                      <Button id="WebCamPageTwoButtons" className="Tap" color="sucess" type='radio' name='retake'  disabled={this.state.retake} onClick={this.changeHandler}>RETAKE</Button>
+                   
+                       <Button id="WebCamPageTwoButtons" className="Tap" color="sucess" type='radio'name="looksgood"   disabled={this.state.retake} onClick={this.changeHandler} >LOOKS GOOD</Button>
+                  </div>
 
-                   <p>{this.state.id}</p>
-            <Button id="IdSelectionButton" className="Tap" type='submit' name='submit'onClick={this.HandleSubmit}>SUBMIT</Button>
+                  <p>{this.state.id}</p>
+                       <Button fullWidth id="WebCamPageSubmit" className="Tap" type='submit' name='submit'onClick={this.HandleSubmit}>SUBMIT</Button>
+                  
+                     </div>:null}
+
+                   
+ 
 
 
           </div>

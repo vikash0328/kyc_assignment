@@ -53,12 +53,12 @@ function FormUserAuth(props) {
     setpassword(e.target.value);
   };
   return (
-    <div className="main">
+    <div id="LoginPageMain" className="main">
       <h3 class="text-center default-text">Hi! Welcome to ZestMoney</h3>
       <h5 class="text-center default-text">One stop KYC solution</h5>
       <img id="loginLogo" src={loginLogo} alt="customer image"></img>
       <Typography id="signInHeading" component="h1" variant="h5">
-        Sign in
+        <strong>Sign in</strong>
       </Typography>
       <div className="App">
         <form className="form" onSubmit={verifypass}>
@@ -93,6 +93,7 @@ function FormUserAuth(props) {
             label="Remember me"
           />
           <Button
+            id="LoginPageButton"
             className="Tap"
             type="submit"
             fullWidth
@@ -102,13 +103,7 @@ function FormUserAuth(props) {
             GET OTP
           </Button>
 
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-          </Grid>
+
         </form>
       </div>
     </div>

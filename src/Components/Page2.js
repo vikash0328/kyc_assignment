@@ -73,11 +73,11 @@ function FormDetailUser() {
   };
 
   return (
-    <div className="main">
-      <p className="heading">
-        {" "}
-        Help us setup your account{" "}
-        <img id="cus" src={custo} alt="customer image"></img> <br />
+    <div id="DetailsPageMain" className="main">
+      <h3 id="DetailsPageDefault" class="text-center default-text">Help us setup your account</h3>
+      <p id="DetailsPageHeading" className="heading">
+
+        <img id="cus" src={custo} alt="customer image"></img> 
         We'll verify it with your KYC documents{" "}
       </p>
 
@@ -98,7 +98,9 @@ function FormDetailUser() {
               sessionStorage.setItem("Name", ev.target.value);
             }}
           />
-          <Typography variant="caption">
+
+          
+          <Typography id="DetailsPageCaption" variant="caption">
             Ensure it matches name on your PAN
           </Typography>
 

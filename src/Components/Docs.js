@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import '../Css/Docs.css';
 import { green } from '@material-ui/core/colors';
-
+import Button from '@material-ui/core/Button';
 class Preview extends React.Component{
     constructor(props)
     {
@@ -72,7 +72,7 @@ class Preview extends React.Component{
     <div><img  src={this.state.imgback} id="DocsImage" alt='back side of document'></img></div>
     <div>Back side Image of {this.state.id}</div>
 
-    <div><button type='submit' name='submit'  onClick={this.handleonsubmit}>SUBMIT</button></div>
+    <div><Button id="FinalPageSubmit" style={{backgroundColor:"green"}} fullWidth type='submit' name='submit'  onClick={this.handleonsubmit}>SUBMIT</Button></div>
 
 
 

@@ -20,8 +20,43 @@ const logOut = () => {
   localStorage.removeItem("auth");
   history.push("/");
 };
+var CryptoJS = require("crypto-js");
+
+function Register() {
+  var name = document.forms["RegForm"]["Name"];
+  var dob = document.forms["RegForm"]["DOB"];
+  var gender = document.forms["RegForm"]["gender"];
+  if (gender.value == "") {
+    alert("Please select your gender.");
+    gender.focus();
+    return false;
+  }
+  if (typeof Storage !== "undefined") {
+    sessionStorage.setItem("Name", name.value);
+    sessionStorage.setItem("DOB", dob.value);
+    sessionStorage.setItem("gender", gender.value);
+  }
+  return true;
+}
+
 function verifypass(event) {
   event.preventDefault();
+  var Name = CryptoJS.AES.encrypt(
+    JSON.stringify(sessionStorage.getItem("Name")),
+    "my-secret-key@123"
+  ).toString();
+  var DOB = CryptoJS.AES.encrypt(
+    JSON.stringify(sessionStorage.getItem("DOB")),
+    "my-secret-key@123"
+  ).toString();
+  var gender = CryptoJS.AES.encrypt(
+    JSON.stringify(sessionStorage.getItem("gender")),
+    "my-secret-key@123"
+  ).toString();
+  sessionStorage.setItem("Name", Name);
+  sessionStorage.setItem("DOB", DOB);
+  sessionStorage.setItem("gender", gender);
+  console.log(gender);
   history.push("/selfie");
   // var ippassword = document.getElementById("password").value;
   // console.log(ippassword);

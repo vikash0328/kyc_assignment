@@ -49,7 +49,7 @@ class TakePhoto extends React.Component {
     this.video.height = "200";
     this.video.play();
     this.webcam = new WebCam(this.video, this.CanvasElement, this.context);
-    this.webcam.SetUp().catch(() => {});
+    this.webcam.SetUp().catch((err) => {alert(err)});
     this.webcam.setup2();
   }
   handleOnClick = (ev) => {

@@ -66,14 +66,13 @@ class WebCam {
             );
           })
           .catch(function (err) {
-            const errormessage =
-              err.name === "NotAllowedError" ||
-              err.name === "PermissionDeniedError"
-                ? " You denied Permission . if you are using chrome" +
+            
+              
+                   const error= " You denied Permission . if you are using chrome" +
                   ' At the top right, click More. Settings. At the bottom, click Advanced . Under "Privacy and security," click Content settings.' +
-                  " Camera.Turn Ask before accessing on or off"
-                : err.name;
-            alert({ errormessage });
+                  " Camera.Turn Ask before accessing on or off";
+                
+            alert(err+error);
           });
       } else {
         reject();

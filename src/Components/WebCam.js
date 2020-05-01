@@ -43,11 +43,13 @@ class WebCamCapture extends React.Component {
       this.setState({ id: name });
       sessionStorage.setItem("id", name);
       this.setState({ isclick: !this.state.isclick });
+      
     } else if (name === "retake") {
       this.setState({ clickme: !this.state.isclick });
       this.setState({ retake: !this.state.retake });
     } else if (name === "looksgood" && side === "FRONT") {
       this.setState({ side: "BACK" });
+      
       this.setState({ clickme: !this.state.isclick });
       this.setState({ retake: !this.state.retake });
     } else if (name === "looksgood" && side === "BACK") {
@@ -76,13 +78,14 @@ class WebCamCapture extends React.Component {
   };
 
   HandleSubmit = (event) => {
-    const id = this.state.id;
+    const id = this.state.id?this.state.id:sessionStorage.getItem('id');
     const front = this.state.imgfront
       ? this.state.imgfront
       : sessionStorage.getItem("front");
     const back = this.state.imgback
       ? this.state.imgback
       : sessionStorage.getItem("back");
+
     if (id && front && back) {
       console.log(front.length);
       alert("Succesfully ENTERED:");
@@ -107,6 +110,7 @@ event.preventDefault();
       this.state.side === "FRONT" ? this.state.imgfront : this.state.imgback;
 
     const dis = this.state.isclick;
+    
 
       return (
     <div style={{backgroundColor:'white'}}>
@@ -128,10 +132,10 @@ event.preventDefault();
 
           <form onClick={this.changeHandler}>
             <div id="WebCamButtonRow" >
-              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='ADHAR' disabled={dis}  style={{marginRight:'10px'} ,{marginTop:"5px"},{backgroundColor:'008000'}}>ADHAR CARD</Button>
-              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='PAN'style={{marginTop:"5px"},{marginLeft:'50px'},{backgroundColor:'008000'}} disabled={dis} >PAN CARD</Button>
+              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='ADHAR' disabled={dis} >ADHAR CARD</Button>
+              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='PAN'  disabled={dis} >PAN CARD</Button>
             </div>
-              <Button id="WebCamPageTwoButtons" className="Tap" name='LICENSE'  style={{marginTop:'10px'},{backgroundColor:'008000'}}disabled={dis} >Driving LICENSE</Button>
+              <Button id="WebCamPageTwoButtons" className="Tap" name='LICENSE'   disabled={dis} >Driving LICENSE</Button>
           </form>
 
         </div>
@@ -148,11 +152,11 @@ event.preventDefault();
 
           {this.state.looksgood?  <Box id="WebCamImage" color='white'> <Webcam id="WebCamImage" audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
                        width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}
-                       
-                       <Button 
-                       fullWidth 
-                       id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={this.state.clickme} onClick={this.capture}>CLICK HERE</Button>
+          
                        </div>:null  }
+                      <Button 
+                       fullWidth 
+                       id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={!this.state.isclick} onClick={this.capture}>CLICK HERE</Button>
 
 
      
@@ -162,7 +166,7 @@ event.preventDefault();
 
 
 
-                   {this.state.firstclick?
+                   {img?
                    <div>
                      <div>
                       <strong>
@@ -180,11 +184,17 @@ event.preventDefault();
                     </div>
 
                        <p>{this.state.id}</p>
-                       <Button fullWidth id="WebCamPageSubmit" className="Tap" type='submit' name='submit'onClick={this.HandleSubmit}>
+                       </div>:null}
+                       
+
+               <p> <EnhancedEncryptionIcon /> Your Goverment Id will be used only for KYC
+                purpose</p>
+              
+                       <Button fullWidth id="WebCamPageSubmit" className="Tap" type='submit' name='submit' onClick={this.HandleSubmit}>
                          SUBMIT
                         </Button>
                   
-                    </div>:null}
+                    
 
                    
  

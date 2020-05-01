@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "posts": [
     {
       "id": 1,
@@ -17,3 +18,12 @@
     "name": "typicode"
   }
 }
+=======
+  "users": [
+    { "name": "sunil", "password": "sunil115" },
+    { "name": "vikash", "password": "vikash115" },
+    { "name": "tharun", "password": "tharun115" },
+    { "name": "swapnil", "password": "swapnil115" }
+  ]
+}
+>>>>>>> ae99bbdb3904c9bd3ba9d121b5c711d4fba7ade4

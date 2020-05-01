@@ -10,16 +10,17 @@ import "../Css/Page2.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Redirect } from "react-router-dom";
 import { makeStyles, responsiveFontSizes } from "@material-ui/core/styles";
 
 // Below belongs to only page 2----------------
 //--------------------
 
 import custo from "../Assets/customer.jpg";
+const logOut = () => {
+  localStorage.removeItem("auth");
+  history.push("/");
+};
 var CryptoJS = require("crypto-js");
-
-
 
 function Register() {
   var name = document.forms["RegForm"]["Name"];
@@ -40,12 +41,21 @@ function Register() {
 
 function verifypass(event) {
   event.preventDefault();
-  var Name = CryptoJS.AES.encrypt(JSON.stringify(sessionStorage.getItem('Name')), 'my-secret-key@123').toString();
-  var DOB = CryptoJS.AES.encrypt(JSON.stringify(sessionStorage.getItem('DOB')), 'my-secret-key@123').toString();
-  var gender = CryptoJS.AES.encrypt(JSON.stringify(sessionStorage.getItem('gender')), 'my-secret-key@123').toString();
-  sessionStorage.setItem('Name',Name);
-  sessionStorage.setItem('DOB',DOB);
-  sessionStorage.setItem('gender',gender);
+  var Name = CryptoJS.AES.encrypt(
+    JSON.stringify(sessionStorage.getItem("Name")),
+    "my-secret-key@123"
+  ).toString();
+  var DOB = CryptoJS.AES.encrypt(
+    JSON.stringify(sessionStorage.getItem("DOB")),
+    "my-secret-key@123"
+  ).toString();
+  var gender = CryptoJS.AES.encrypt(
+    JSON.stringify(sessionStorage.getItem("gender")),
+    "my-secret-key@123"
+  ).toString();
+  sessionStorage.setItem("Name", Name);
+  sessionStorage.setItem("DOB", DOB);
+  sessionStorage.setItem("gender", gender);
   console.log(gender);
   history.push("/selfie");
   // var ippassword = document.getElementById("password").value;
@@ -81,11 +91,15 @@ function FormDetailUser() {
   };
 
   return (
-    <div className="main">
-      <p className="heading">
-        {" "}
-        Help us setup your account{" "}
-        <img id="cus" src={custo} alt="customer image"></img> <br />
+    <div id="DetailsPageMain" className="main">
+      {localStorage.getItem("auth") ? (
+        <button onClick={logOut}>logout</button>
+      ) : null}
+
+      <h3 id="DetailsPageDefault" class="text-center default-text">Help us setup your account</h3>
+      <p id="DetailsPageHeading" className="heading">
+
+        <img id="cus" src={custo} alt="customer image"></img> 
         We'll verify it with your KYC documents{" "}
       </p>
 
@@ -106,7 +120,9 @@ function FormDetailUser() {
               sessionStorage.setItem("Name", ev.target.value);
             }}
           />
-          <Typography variant="caption">
+
+          
+          <Typography id="DetailsPageCaption" variant="caption">
             Ensure it matches name on your PAN
           </Typography>
 
@@ -119,9 +135,9 @@ function FormDetailUser() {
             label="Date of Birth"
             name="dob"
             autoComplete="dob"
-            // placeholder="DD/MM/YYYY"
-            // autoFocus
-            type="date"
+            type="text"
+            onFocus={(e) => (e.target.type = "date")}
+            onBlur={(e) => (e.target.type = "text")}
             onChange={(ev) => {
               sessionStorage.setItem("DOB", ev.target.value);
             }}
@@ -144,9 +160,6 @@ function FormDetailUser() {
             <label class="custom-control-label" for="defaultInline1">
               Male
             </label>
-          </div>
-
-          <div class="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
               class="custom-control-input"
@@ -159,9 +172,6 @@ function FormDetailUser() {
             <label class="custom-control-label" for="defaultInline1">
               Female
             </label>
-          </div>
-
-          <div class="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
               class="custom-control-input"

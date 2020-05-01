@@ -13,12 +13,17 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import CameraFrontIcon from "@material-ui/icons/CameraFront";
 import history from "../history";
+import Button from '@material-ui/core/Button';
+import verifyIdentity from '../Assets/SelfiePage1.png';
 
-import verifyIdentity from '../Assets/verifyIdentity.png';
 const MySkeleton = styled(Skeleton)({
   alignItems: "center",
   textalign: "center",
 });
+const logOut = () => {
+  localStorage.removeItem("auth")
+  history.push("/");
+}
 
 class TakePhoto extends React.Component {
   constructor(props) {
@@ -75,58 +80,66 @@ class TakePhoto extends React.Component {
     const { img, error, clickme, retake } = this.state;
 
     const clickbutton = !error ? (
-      <button
+      <Button
         name="click"
         className="button"
         disabled={clickme}
         onClick={this.handleOnClick}
+        style={{ backgroundColor: "green" }}
+        fullWidth
       >
         CLICK <CameraFrontIcon fontSize="large" />
-      </button>
+      </Button>
     ) : null;
     const retakebutton = (
-      <button
+      <Button
+        id="TwoButtons"
+        style={{ backgroundColor: "green" }}
         name="retake"
         className="button"
         disabled={!clickme || retake}
         onClick={this.handleOnClick}
       >
         RETAKE
-      </button>
+      </Button>
     );
     const looksgoodbutton = (
-      <button
+      <Button
+        id="TwoButtons"
         name="looksgood"
         className="button"
         disabled={!clickme || retake}
         onClick={this.handleOnClick}
+        style={{ backgroundColor: "green" }}
       >
         LOOKSGOOD
-      </button>
+      </Button>
     );
     const IMAGE = img ? img : sessionStorage.getItem("img");
 
     return (
       <div className="App-header">
+        {localStorage.getItem("auth") ? <button onClick={logOut}>logout</button> : null}
         <Container id="PageContainer">
           
             <Card className="HeaderCard" id="HeaderCard">
 
-              <CardContent color="primary">
-                <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img>
-                <Typography id="SessionHeadings"><strong  > Verify your Identity</strong></Typography>
-                <Typography id="ContentText"> 
-                    Please upload a Selfie and provide personal details for KYC verification
-                </Typography>
-                
-              </CardContent>
+
+
+                <h3 id="SelfiePageDefault" class="text-center default-text">Please verify your Identity</h3>
+  
+                 <p id="SelfiePageHeading" className="heading">
+
+                 <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img> 
+                  Please provide personal details for KYC verification
+                 </p>
+
             </Card>
 
-            
-            <Card id="PreviewCard">
-             <CardContent  id="CaptureCardHeading" color='primary'>
-                <strong> Take a Selfie</strong>
-              </CardContent>
+            <Card id="CaptureCard">
+
+            <h3 id="SelfiePageDefault" class="text-center default-text">Take a Selfie</h3>
+
               <CardContent color='secondary' id="CaptureCardContent" > 
                 {" "}
                 <Typography id="ContentText">
@@ -135,40 +148,40 @@ class TakePhoto extends React.Component {
                 </Typography>{" "}
               </CardContent>
 
-              <CardMedia>
+              
                 {" "}
                 <canvas id="cancamera" width="300" height="200"></canvas>
-              </CardMedia>
-              <CardActions>{clickbutton}</CardActions>
+              
+              <CardActions id ="SelfiePageClickButton">{clickbutton}</CardActions>
             </Card>
 
 
 
  
             <Card id="CaptureCard">
-              <CardContent id="CaptureCardHeading">
-                <div className="text">
-                  <strong> Preview</strong>
-                </div>
-              </CardContent>
+              
+              <h2 id="SelfiePageDefault" class="text-center default-text">Preview</h2>
+               
+
+             
 
               
               <CardContent id="PreviewImage">
                 {IMAGE ? (
                   <div>
-                    <img src={IMAGE} alt="You see your Selfie here " />
+                    <img id="SelfiePagePreviewImage" src={IMAGE} alt="You see your Selfie here " />
                   </div>
                 ) : (
                   <MySkeleton
                     variant="react"
-                    width={300}
+                    width={200}
                     height={200}
                     animation={false}
                   ></MySkeleton>
                 )}
               </CardContent>
 
-              <CardActions>
+              <CardActions id="SelfiePageTwoButtons" >
                 {retakebutton} <span></span> {looksgoodbutton}
               </CardActions>
 
@@ -179,14 +192,16 @@ class TakePhoto extends React.Component {
                 purpose
               </CardContent>
 
-              <button
+              <Button
+              id ="SelfiePageSubmitButton"
+                fullWidth
                 name="submit"
                 className="button"
                 style={{ backgroundColor: "green" }}
                 onClick={this.handleOnClick}
               >
                 SAVE & CONTINUE
-              </button>
+              </Button>
             </Card>
          
         </Container>

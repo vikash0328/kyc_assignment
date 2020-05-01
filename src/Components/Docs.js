@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import '../Css/Docs.css';
 import { green } from '@material-ui/core/colors';
+import Button from '@material-ui/core/Button';
+import history from '../history'
 var CryptoJS = require("crypto-js");
 
 class Preview extends React.Component{
@@ -26,6 +28,9 @@ class Preview extends React.Component{
       {
     //   {  console.log(this.state.imgfront.length);
           alert('FORM IS SUBMITTED ')
+          localStorage.removeItem("auth")
+          history.push("/");
+          window.location.reload();
       }
       ev.preventDefault();
     }
@@ -73,7 +78,7 @@ class Preview extends React.Component{
     <div><img  src={this.state.imgback} id="DocsImage" alt='back side of document'></img></div>
     <div>Back side Image of {this.state.id}</div>
 
-    <div><button type='submit' name='submit'  onClick={this.handleonsubmit}>SUBMIT</button></div>
+    <div><Button id="FinalPageSubmit" style={{backgroundColor:"green"}} fullWidth type='submit' name='submit'  onClick={this.handleonsubmit}>SUBMIT</Button></div>
 
 
 

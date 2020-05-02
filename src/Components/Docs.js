@@ -56,12 +56,14 @@ class Preview extends React.Component{
           
 <div id="DocsBox" >
        <card>
+     
            <cardcontent id="DocsHeading"> 
-           <strong id="StrongText" >Preview Page</strong>
+           <h3 id="FinalPageHeading" class="text-center default-text">Preview Page</h3>
+
            </cardcontent>
        </card>
        
-    <hr style={{width:'60%'}}/>
+    <hr style={{width:'70%'}}/>
        <card>
            
            <cardcontent>
@@ -71,11 +73,12 @@ class Preview extends React.Component{
 
            </cardcontent>
        </card>                     
-   </div>
-   <div id="DocsBox">
-  
 
-        <div id="DocsSelfieHeading"><strong id="StrongText" >Selfie:</strong></div>
+
+       <cardcontent id="DocsHeading"> 
+           <h3 id="FinalPageHeading" class="text-center default-text">Selfie:</h3>
+
+           </cardcontent>
         <div><img src={this.state.img} id="DocsImage" alt='Selfie'></img></div>
         <hr style={{width:'80%'}}/>
 

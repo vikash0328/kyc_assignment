@@ -38,6 +38,25 @@ function Register() {
   }
   return true;
 }
+function detec() { 
+  
+  if (navigator.userAgent.match(/Android/i) 
+      || navigator.userAgent.match(/webOS/i) 
+      || navigator.userAgent.match(/iPhone/i)  
+      || navigator.userAgent.match(/iPad/i)  
+      || navigator.userAgent.match(/iPod/i) 
+      || navigator.userAgent.match(/BlackBerry/i) 
+      || navigator.userAgent.match(/Windows Phone/i)) { 
+      
+  } else { 
+     alert('We require particular functionality of mobile phones ,so please use mobile phone');
+     //history.push("/");
+  } 
+  
+}
+
+
+
 
 function verifypass(event) {
   event.preventDefault();
@@ -57,6 +76,7 @@ function verifypass(event) {
   sessionStorage.setItem("DOB", DOB);
   sessionStorage.setItem("gender", gender);
   console.log(gender);
+  detec();
   history.push("/selfie");
   // var ippassword = document.getElementById("password").value;
   // console.log(ippassword);
@@ -68,6 +88,7 @@ function verifypass(event) {
 
 //password encryption...............
 //............
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -92,6 +113,7 @@ function FormDetailUser() {
 
   return (
     <div id="DetailsPageMain" className="main">
+
       {localStorage.getItem("auth") ? (
         <button onClick={logOut}>logout</button>
       ) : null}

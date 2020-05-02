@@ -138,7 +138,7 @@ event.preventDefault();
               <Button id="WebCamPageTwoButtons" className="Tap" name='LICENSE'   disabled={dis} >Driving LICENSE</Button>
           </form>
 
-        </div>
+
 
 
         { dis ? <div> 
@@ -153,13 +153,17 @@ event.preventDefault();
           {this.state.looksgood?  <Box id="WebCamImage" color='white'> <Webcam id="WebCamImage" audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
                        width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}
           
-                       </div>:null  }
-                      <Button 
+
+                    <Button 
                        fullWidth 
                        id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={!this.state.isclick} onClick={this.capture}>CLICK HERE</Button>
 
 
-     
+                       </div>:null  }
+
+
+
+            </div>     
   
          
           <div id="WebCamBox" >

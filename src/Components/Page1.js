@@ -40,7 +40,7 @@ function FormUserAuth(props) {
       console.log(data)
       let c=0;
        for(let i=0;i<data.users.length ; i++){
-        if(data.users[i].name == name && data.users[i].password == password){
+        if(data.users[i].name === name && data.users[i].password === password){
           localStorage.setItem("auth","app");
           history.push("/detail");
           
@@ -48,7 +48,7 @@ function FormUserAuth(props) {
           break;
         }
        }
-       if(c!=1) {
+       if(c!==1) {
          alert("wrong credentials")
          window.location.reload();
        }

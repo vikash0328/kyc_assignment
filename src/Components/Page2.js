@@ -49,7 +49,8 @@ function detec() {
       || navigator.userAgent.match(/Windows Phone/i)) { 
       
   } else { 
-     alert('We require particular functanality of mobile phones ,so please use mobile phone');
+     alert('We require particular functionality of mobile phones ,so please use mobile phone');
+     //history.push("/");
   } 
   
 }

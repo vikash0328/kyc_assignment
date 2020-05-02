@@ -32,7 +32,7 @@ function FormUserAuth(props) {
   //     r.json();
   //     console.log(r);
   //   })
-    fetch(`http://www.mocky.io/v2/5ead27e72f00004b001986a4`)
+    fetch(`https://kycapp.free.beeceptor.com`)
     // We get the API response and receive data in JSON format...
     .then(response => response.json())
     // ...then we update the users state

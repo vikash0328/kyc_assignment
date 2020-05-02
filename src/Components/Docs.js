@@ -1,6 +1,9 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 import '../Css/Docs.css';
+import { green } from '@material-ui/core/colors';
+import Button from '@material-ui/core/Button';
 import history from '../history'
 var CryptoJS = require("crypto-js");
 
@@ -9,13 +12,13 @@ class Preview extends React.Component{
     {
         super(props);
          this.state={
-             name: JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('Name'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)),
-             dateofbirth:JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('DOB'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)),
-             gender:JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('gender'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)),
-             img:sessionStorage.getItem('img'),
-             imgfront:sessionStorage.getItem('front'),
-             imgback:sessionStorage.getItem('back'),
-             id:sessionStorage.getItem('id')
+             name: sessionStorage.getItem('Name')?  JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('Name'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)):'',
+             dateofbirth:sessionStorage.getItem('DOB')? JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('DOB'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)):'',
+             gender:sessionStorage.getItem('gender')?JSON.parse(CryptoJS.AES.decrypt(sessionStorage.getItem('gender'), 'my-secret-key@123').toString(CryptoJS.enc.Utf8)):'',
+             img:sessionStorage.getItem('img')?sessionStorage.getItem('img'):'',
+             imgfront:sessionStorage.getItem('front')?sessionStorage.getItem('front'):'',
+             imgback:sessionStorage.getItem('back')?sessionStorage.getItem('back'):'',
+             id:sessionStorage.getItem('id')?sessionStorage.getItem('id'):""
          }
         
     }
@@ -34,6 +37,19 @@ class Preview extends React.Component{
       ev.preventDefault();
     }
     render(){
+        const {name,dateofbirth,gender,img,imgfront,imgback,id}=this.state;
+        if(!name || !dateofbirth || !gender)
+        { alert("You haven't filled Personal Details ,Please fill it by clicking Ok");
+            return  <Redirect to='/detail' />;
+        }
+        else if (!img)
+        {alert("You haven't taken selfie ,Please take it before submiting the form by clicking Ok");
+            return <Redirect to='/selfie' />;
+        }
+        else if(!id ||!imgfront || !imgback)
+        { alert("You haven't choosen any document or taken photos of document ,Please choose document or take picture of document it before submiting the form by clicking Ok");
+            return <Redirect to='/docs' />;
+        }
         return(
 <div id="DocsMain">
 
@@ -77,7 +93,7 @@ class Preview extends React.Component{
     <div><img  src={this.state.imgback} id="DocsImage" alt='back side of document'></img></div>
     <div>Back side Image of {this.state.id}</div>
 
-    <div><button type='submit' name='submit'  onClick={this.handleonsubmit}>SUBMIT</button></div>
+    <div><Button id="FinalPageSubmit" style={{backgroundColor:"green"}} fullWidth type='submit' name='submit'  onClick={this.handleonsubmit}>SUBMIT</Button></div>
 
 
 

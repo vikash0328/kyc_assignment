@@ -151,7 +151,7 @@ event.preventDefault();
         
 
           {this.state.looksgood?  <Box id="WebCamImage" color='white'> <Webcam id="WebCamImage" audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
-                       width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}
+                       width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white',width:'80%',height:'40%'}}/>  </Box>:null}
           
 
                     <Button 

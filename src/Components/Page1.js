@@ -4,8 +4,6 @@ import "../Css/Page1.css";
 import history from "../history";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Typography from "@material-ui/core/Typography";
@@ -29,20 +27,49 @@ function FormUserAuth(props) {
   
   const verifypass = (event) => {
    event.preventDefault();
-    fetch("http://localhost:8000/users?name=" + name + "&&password=" + password).then((result) => {
-    result.json().then((resp) => {
-      if(resp.length>0){
-            //password encryption...............
-            //............
-            localStorage.setItem("auth","app");
-            history.push("/detail");
+  //  fetch("http://www.mocky.io/v2/5ead27e72f00004b001986a4")
+  //   .then((r) => {
+  //     r.json();
+  //     console.log(r);
+  //   })
+    fetch(`http://www.mocky.io/v2/5ead27e72f00004b001986a4`)
+    // We get the API response and receive data in JSON format...
+    .then(response => response.json())
+    // ...then we update the users state
+    .then(data =>{
+      console.log(data)
+      let c=0;
+       for(let i=0;i<data.users.length ; i++){
+        if(data.users[i].name == name && data.users[i].password == password){
+          localStorage.setItem("auth","app");
+          history.push("/detail");
+          
+          c=1;
+          break;
+        }
+       }
+       if(c!=1) {
+         alert("wrong credentials")
+         window.location.reload();
+       }
       }
-      else{
-        alert("Wrong Credentials");
-        window.location.reload()
-      }
-    })
-  })
+    )
+     // Catch any errors we hit and update the app
+     .catch(error => console.log(error));
+  //   fetch("http://localhost:8000/users?name=" + name + "&&password=" + password).then((result) => {
+  //   result.json().then((resp) => {
+  //     if(resp.length>0){
+  //           //password encryption...............
+  //           //............
+  //           localStorage.setItem("auth","app");
+  //           history.push("/detail");
+  //     }
+  //     else{
+  //       alert("Wrong Credentials");
+  //       // window.location.reload()
+  //     }
+  //   })
+  // })
 
     // var ippassword = document.getElementById("password").value;
     // console.log(ippassword);

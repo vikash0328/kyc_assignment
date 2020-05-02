@@ -1,8 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
 import '../Css/Docs.css';
-import { green } from '@material-ui/core/colors';
 import history from '../history'
 var CryptoJS = require("crypto-js");
 
@@ -25,11 +23,13 @@ class Preview extends React.Component{
       const type=ev.target.name;
       if(type==='submit')
       {
-    //   {  console.log(this.state.imgfront.length);
           alert('FORM IS SUBMITTED ')
           localStorage.removeItem("auth")
+          localStorage.removeItem("DocsBox")
+          sessionStorage.clear();
           history.push("/");
           window.location.reload();
+          
       }
       ev.preventDefault();
     }

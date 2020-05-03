@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+
 import Webcam from "react-webcam";
 import { styled } from "@material-ui/core/styles";
 import { compose, spacing, palette } from "@material-ui/system";
@@ -113,6 +113,8 @@ event.preventDefault();
     
 
       return (
+
+        /*
     <div style={{backgroundColor:'white'}}>
 
             <Card className="HeaderCard" id="HeaderCard">
@@ -206,6 +208,91 @@ event.preventDefault();
 
        </div>
       </div>
+
+      */
+
+
+
+
+
+     <div style={{backgroundColor:'white'}}>
+
+
+        <Card className="WebCamHeaderCard" id="WebCamHeaderCard">
+              <h3 id="SelfiePageDefault" class="text-center default-text">Please verify your Identity</h3>
+
+             <p id="SelfiePageHeading" className="heading">
+
+              <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img> 
+                Please provide personal details for KYC verification
+             </p>
+
+          </Card>
+
+            <Card className="HeaderCard" id="WebCamHeaderCard">
+
+
+        <h3 id="SelfiePageDefault" class="text-center default-text">SELECT THE GOVERMENT ID</h3>
+     
+      <form onClick={this.changeHandler}>
+      <div>
+        <button id="WebCamButton" type='radio'  name='ADHAR' disabled={dis}  style={{marginRight:'10px'} ,{marginTop:"5px"},{backgroundColor:'green'}}>
+          <strong>ADHAR CARD</strong>
+        </button>
+        <button id="WebCamButton" type='radio'  name='PAN'style={{marginTop:"5px"},{marginLeft:'50px'},{backgroundColor:'green'}} disabled={dis} >
+          <strong>PAN CARD</strong> 
+        </button>
+        
+      <button id="WebCamButton" name='LICENSE'  style={{marginTop:'10px'},{backgroundColor:'green'}}disabled={dis} >
+        <strong>Driving LICENSE</strong>  
+      </button>
+
+      </div>
+
+      </form> 
+   
+     
+
+
+
+      { dis ? <div> <div>TAKE THE PICTURE OF {this.state.side} SIDE OF YOUR {this.state.id}</div>
+         <div> 
+           <button  id="WebCamClickButton" name='clickme'  style={{marginTop:'10px'},{backgroundColor:'green'}} disabled={this.state.clickme} onClick={this.capture}>
+             <strong>
+             CLICK HERE
+             </strong>
+           </button>
+         </div>
+             {this.state.looksgood?  <Box color='white'> <Webcam audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
+         width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}</div>:null  }
+
+                <form >
+                <div> 
+                  <button id="WebCamPreviewButtons" type='radio' name='retake' style={{backgroundColor:'green'}} disabled={this.state.retake} onClick={this.changeHandler}>
+                    <strong>
+                    RETAKE
+                    </strong> 
+                  </button>
+                <span>  </span>
+               <button id="WebCamPreviewButtons" type='radio'name="looksgood"  style={{backgroundColor:'green'}} disabled={this.state.retake} onClick={this.changeHandler} >
+                 <strong>
+                   LOOKS GOOD
+                  </strong>
+                 
+               </button>
+                </div><br></br></form>
+      
+       {this.state.firstclick?<div><div>The Preview of {this.state.side} side of {this.state.id} :</div><div>
+         <img  src={img}/></div> </div>:null}
+       
+       
+        
+       </Card>
+
+       <h3 id="SelfiePageDefault" class="text-center default-text">{this.state.id}</h3>
+       
+         <button id="WebCamClickButton"  type='submit' name='submit' style={{backgroundColor:'green'}} onClick={this.HandleSubmit}>SUBMIT</button>
+     </div>
     
       );
                    }

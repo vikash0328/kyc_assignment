@@ -97,11 +97,6 @@ class Preview extends React.Component{
     <div>Back side Image of {this.state.id}</div>
 
     <div><Button id="FinalPageSubmit" style={{backgroundColor:"green"}} fullWidth type='submit' name='submit'  onClick={this.handleonsubmit}>SUBMIT</Button></div>
-
-
-
-
-
    </div>
 
 

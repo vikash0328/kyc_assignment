@@ -80,19 +80,20 @@ class TakePhoto extends React.Component {
     const { img, error, clickme, retake } = this.state;
 
     const clickbutton = !error ? (
-      <Button
+      <button
+        id="HandlaSelfieClickButton"
         name="click"
         className="button"
         disabled={clickme}
         onClick={this.handleOnClick}
         style={{ backgroundColor: "green" }}
-        fullWidth
+        
       >
         CLICK <CameraFrontIcon fontSize="large" />
-      </Button>
+      </button>
     ) : null;
     const retakebutton = (
-      <Button
+      <button
         id="TwoButtons"
         style={{ backgroundColor: "green" }}
         name="retake"
@@ -100,11 +101,13 @@ class TakePhoto extends React.Component {
         disabled={!clickme || retake}
         onClick={this.handleOnClick}
       >
-        RETAKE
-      </Button>
+        <strong>RETAKE</strong>
+        
+      </button>
     );
     const looksgoodbutton = (
-      <Button
+      
+      <button
         id="TwoButtons"
         name="looksgood"
         className="button"
@@ -112,8 +115,9 @@ class TakePhoto extends React.Component {
         onClick={this.handleOnClick}
         style={{ backgroundColor: "green" }}
       >
-        LOOKSGOOD
-      </Button>
+        <strong>LOOKSGOOD</strong>
+        
+      </button>
     );
     const IMAGE = img ? img : sessionStorage.getItem("img");
 
@@ -192,7 +196,7 @@ class TakePhoto extends React.Component {
                 purpose
               </CardContent>
 
-              <Button
+              <button
               id ="SelfiePageSubmitButton"
                 fullWidth
                 name="submit"
@@ -200,8 +204,12 @@ class TakePhoto extends React.Component {
                 style={{ backgroundColor: "green" }}
                 onClick={this.handleOnClick}
               >
-                SAVE & CONTINUE
-              </Button>
+                <strong>
+                SAVE & CONTINUE 
+                </strong>
+
+                
+              </button>
             </Card>
          
         </Container>

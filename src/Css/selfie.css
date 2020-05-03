@@ -3,6 +3,11 @@ iframe
     display: none;
 }
 
+#HandlaSelfieClickButton{
+  width:85%;
+  margin-left:7% ;
+  height: 50px;
+}
 
 #PageContainer{
   padding-top: 0%;
@@ -198,7 +203,7 @@ CardContent *{
   }
 
   .button{
-
+    border-radius: 8px;
     align-self: center;
     margin-bottom: 10px;
   }

@@ -291,7 +291,10 @@ event.preventDefault();
 
        <h3 id="SelfiePageDefault" class="text-center default-text">{this.state.id}</h3>
        
-         <button id="WebCamClickButton"  type='submit' name='submit' style={{backgroundColor:'green'}} onClick={this.HandleSubmit}>SUBMIT</button>
+         <button id="WebCamClickButton"  type='submit' name='submit' style={{backgroundColor:'green'}} onClick={this.HandleSubmit}>
+           <strong>
+           SUBMIT
+             </strong></button>
      </div>
     
       );

@@ -19,13 +19,37 @@
 
 }
 
+#WebCamButton{
+    height: 40px;
+    border-radius: 8px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+#WebCamClickButton{
+    width:50%;
+    height:40px;
+    height:40px;
+    border-radius: 8px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+
+} 
+#WebCamPreviewButtons{
+    width:40%;
+    height:40px;
+    height:40px;
+    margin-top: 8%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 8px;
+}
 #WebCamPageTwoButtons{
     width:45%;
     margin-left: 3%;
 }
-Button{
-    margin-top: 10%;
-}
+
 #WebCamPageSubmit{
     margin-top: 4%;
 }
@@ -38,3 +62,23 @@ Button{
     margin-top: 5%;
     margin-bottom: 4%;
 }
+
+
+#WebCamHeaderCard{
+
+    margin-top: 3%;
+    padding-top: 1%;
+    margin-bottom: 6%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-bottom: 0%;
+    padding-left: 2%;
+    padding-right: 2%;
+    -webkit-box-shadow: 6px 4px 45px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 4px 45px -4px rgba(0,0,0,0.75);
+    box-shadow: 6px 4px 45px -4px rgba(0,0,0,0.75);
+    -webkit-border-radius: 12px 12px 12px 12px;
+    -moz-border-radius: 12px 12px 12px 12px;
+    border-radius: 12px 12px 12px 12px;
+  
+  }

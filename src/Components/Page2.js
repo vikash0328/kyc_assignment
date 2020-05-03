@@ -38,25 +38,23 @@ function Register() {
   }
   return true;
 }
-function detec() { 
-  
-  if (navigator.userAgent.match(/Android/i) 
-      || navigator.userAgent.match(/webOS/i) 
-      || navigator.userAgent.match(/iPhone/i)  
-      || navigator.userAgent.match(/iPad/i)  
-      || navigator.userAgent.match(/iPod/i) 
-      || navigator.userAgent.match(/BlackBerry/i) 
-      || navigator.userAgent.match(/Windows Phone/i)) { 
-      
-  } else { 
-     alert('We require particular functionality of mobile phones ,so please use mobile phone');
-     //history.push("/");
-  } 
-  
+function detec() {
+  if (
+    navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/webOS/i) ||
+    navigator.userAgent.match(/iPhone/i) ||
+    navigator.userAgent.match(/iPad/i) ||
+    navigator.userAgent.match(/iPod/i) ||
+    navigator.userAgent.match(/BlackBerry/i) ||
+    navigator.userAgent.match(/Windows Phone/i)
+  ) {
+  } else {
+    alert(
+      "We require particular functionality of mobile phones ,so please use mobile phone"
+    );
+    //history.push("/");
+  }
 }
-
-
-
 
 function verifypass(event) {
   event.preventDefault();
@@ -78,16 +76,7 @@ function verifypass(event) {
   console.log(gender);
   detec();
   history.push("/selfie");
-  // var ippassword = document.getElementById("password").value;
-  // console.log(ippassword);
-  // localStorage.setItem("myData", ippassword);
-  // if (true) {
-  //   return <Redirect to="./components/Details" />;
-  // }
 }
-
-//password encryption...............
-//............
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -113,15 +102,15 @@ function FormDetailUser() {
 
   return (
     <div id="DetailsPageMain" className="main">
-
       {localStorage.getItem("auth") ? (
         <button onClick={logOut}>logout</button>
       ) : null}
 
-      <h3 id="DetailsPageDefault" class="text-center default-text">Help us setup your account</h3>
+      <h3 id="DetailsPageDefault" className="text-center default-text">
+        Help us setup your account
+      </h3>
       <p id="DetailsPageHeading" className="heading">
-
-        <img id="cus" src={custo} alt="customer image"></img> 
+        <img id="cus" src={custo} alt="customer image"></img>
         We'll verify it with your KYC documents{" "}
       </p>
 
@@ -143,7 +132,6 @@ function FormDetailUser() {
             }}
           />
 
-          
           <Typography id="DetailsPageCaption" variant="caption">
             Ensure it matches name on your PAN
           </Typography>
@@ -167,11 +155,11 @@ function FormDetailUser() {
 
           <div
             id="genderElement"
-            class="custom-control custom-radio custom-control-inline"
+            className="custom-control custom-radio custom-control-inline"
           >
             <input
               type="radio"
-              class="custom-control-input"
+              className="custom-control-input"
               id="Male"
               name="inlineDefaultRadiosExample"
               required
@@ -179,31 +167,31 @@ function FormDetailUser() {
                 sessionStorage.setItem("gender", ev.target.id);
               }}
             />
-            <label class="custom-control-label" for="defaultInline1">
+            <label className="custom-control-label" >
               Male
             </label>
             <input
               type="radio"
-              class="custom-control-input"
+              className="custom-control-input"
               id="Female"
               name="inlineDefaultRadiosExample"
               onChange={(ev) => {
                 sessionStorage.setItem("gender", ev.target.id);
               }}
             />
-            <label class="custom-control-label" for="defaultInline1">
+            <label className="custom-control-label" >
               Female
             </label>
             <input
               type="radio"
-              class="custom-control-input"
+              className="custom-control-input"
               id="Other"
               name="inlineDefaultRadiosExample"
               onChange={(ev) => {
                 sessionStorage.setItem("gender", ev.target.id);
               }}
             />
-            <label class="custom-control-label" for="defaultInline1">
+            <label className="custom-control-label" >
               Others
             </label>
           </div>

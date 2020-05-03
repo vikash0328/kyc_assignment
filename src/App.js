@@ -10,6 +10,9 @@ import Protected from "./Components/Protected.js";
 import history from './history'
 
 const App = () => {
+  React.useEffect(() => {
+    localStorage.setItem("dark","dark");
+  }, []);
   return (
     <div className="App">
       

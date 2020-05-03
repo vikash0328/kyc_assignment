@@ -4,7 +4,7 @@ function drawvideo(video, context, width, height) {
   context.save();
   context.scale(0.95, 0.9);
   context.beginPath();
-  context.strokeStyle = "blue"; // some color/style
+  context.strokeStyle = "blue"; 
   context.lineWidth = 2;
   context.arc(
     width / 2,
@@ -87,15 +87,8 @@ class WebCam {
     this.CanvasElement.width = imgwidth;
     this.CanvasElement.height = imgheight;
     context.drawImage(this.CameraElement, 0, 0, imgwidth, imgheight);
-    //context.save();
-    //context.scale(0.95,.9);
-    context.strokeStyle = "blue"; // some color/style
-    context.lineWidth = 2; // thickness
-    //context.beginPath();
-    //context.arc(imgwidth/2, imgheight/2,Math.pow((imgwidth*imgwidth/8)+(imgheight*imgheight/8),1/2) , 0, Math.PI*2, false);
-    //context.stroke(); use this for drawing oval shape convas
-    //context.closePath();
-    //context.restore();
+    context.strokeStyle = "blue";
+    context.lineWidth = 2; 
     context.strokeRect(0, 0, context.canvas.width, context.canvas.height);
 
     return { imgwidth, imgheight };
@@ -118,8 +111,6 @@ class WebCam {
           self.CameraElement.width,
           self.CameraElement.height
         );
-        //this.CanvasCameraElement.drawImage(this.CameraElement,0,0,200,400);
-        //setTimeout(this.bind(this) ,50000);
       },
       false
     );

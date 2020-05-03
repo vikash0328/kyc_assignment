@@ -7,13 +7,10 @@ import history from "../history";
 import { Typography } from "@material-ui/core";
 import "../Css/WebCam.css";
 
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import EnhancedEncryptionIcon from "@material-ui/icons/EnhancedEncryption";
-import Skeleton from "@material-ui/lab/Skeleton";
-import verifyIdentity from '../Assets/SelfiePage1.png';
-import Card from '@material-ui/core/Card';
-const Box = styled('div')(compose(spacing, palette));
+import verifyIdentity from "../Assets/SelfiePage1.png";
+import Card from "@material-ui/core/Card";
+const Box = styled("div")(compose(spacing, palette));
 
 class WebCamCapture extends React.Component {
   constructor(props) {
@@ -43,13 +40,12 @@ class WebCamCapture extends React.Component {
       this.setState({ id: name });
       sessionStorage.setItem("id", name);
       this.setState({ isclick: !this.state.isclick });
-      
     } else if (name === "retake") {
       this.setState({ clickme: !this.state.isclick });
       this.setState({ retake: !this.state.retake });
     } else if (name === "looksgood" && side === "FRONT") {
       this.setState({ side: "BACK" });
-      
+
       this.setState({ clickme: !this.state.isclick });
       this.setState({ retake: !this.state.retake });
     } else if (name === "looksgood" && side === "BACK") {
@@ -78,7 +74,7 @@ class WebCamCapture extends React.Component {
   };
 
   HandleSubmit = (event) => {
-    const id = this.state.id?this.state.id:sessionStorage.getItem('id');
+    const id = this.state.id ? this.state.id : sessionStorage.getItem("id");
     const front = this.state.imgfront
       ? this.state.imgfront
       : sessionStorage.getItem("front");
@@ -93,121 +89,171 @@ class WebCamCapture extends React.Component {
     } else {
       alert("Some Field Are Empty");
     }
-  
 
-event.preventDefault();
-};
+    event.preventDefault();
+  };
 
-    render() {
-      const videoConstraints = {
-        width: 1280,
-        height: 720,
-        facingMode: "user"
-      };
-      const ref=this.setRef;
-      
-      const img =
+  render() {
+    const videoConstraints = {
+      width: 1280,
+      height: 720,
+      facingMode: "user",
+    };
+    const ref = this.setRef;
+
+    const img =
       this.state.side === "FRONT" ? this.state.imgfront : this.state.imgback;
 
     const dis = this.state.isclick;
-    
 
-      return (
-    <div style={{backgroundColor:'white'}}>
+    return (
+      <div style={{ backgroundColor: "white" }}>
+        <Card className="HeaderCard" id="HeaderCard">
+          <h3 id="SelfiePageDefault" class="text-center default-text">
+            Please verify your Identity
+          </h3>
 
-            <Card className="HeaderCard" id="HeaderCard">
-              <h3 id="SelfiePageDefault" class="text-center default-text">Please verify your Identity</h3>
+          <p id="SelfiePageHeading" className="heading">
+            <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img>
+            Please provide personal details for KYC verification
+          </p>
+        </Card>
 
-             <p id="SelfiePageHeading" className="heading">
-
-              <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img> 
-                Please provide personal details for KYC verification
-             </p>
-
-            </Card>
-
-
-      <div id="WebCamBox">
-      <h3 id="SelfiePageDefault" class="text-center default-text">Select The government ID</h3>
+        <div id="WebCamBox">
+          <h3 id="SelfiePageDefault" class="text-center default-text">
+            Select The government ID
+          </h3>
 
           <form onClick={this.changeHandler}>
-            <div id="WebCamButtonRow" >
-              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='ADHAR' disabled={dis} >ADHAR CARD</Button>
-              <Button id="WebCamPageTwoButtons" className="Tap" type='radio'  name='PAN'  disabled={dis} >PAN CARD</Button>
+            <div id="WebCamButtonRow">
+              <Button
+                id="WebCamPageTwoButtons"
+                className="Tap"
+                type="radio"
+                name="ADHAR"
+                disabled={dis}
+              >
+                ADHAR CARD
+              </Button>
+              <Button
+                id="WebCamPageTwoButtons"
+                className="Tap"
+                type="radio"
+                name="PAN"
+                disabled={dis}
+              >
+                PAN CARD
+              </Button>
             </div>
-              <Button id="WebCamPageTwoButtons" className="Tap" name='LICENSE'   disabled={dis} >Driving LICENSE</Button>
+            <Button
+              id="WebCamPageTwoButtons"
+              className="Tap"
+              name="LICENSE"
+              disabled={dis}
+            >
+              Driving LICENSE
+            </Button>
           </form>
 
+          {dis ? (
+            <div>
+              <Typography variant="subtitle1" id="WebCamText">
+                Take the picture of {this.state.side} side of your{" "}
+                {this.state.id}
+              </Typography>
 
+              {this.state.looksgood ? (
+                <Box id="WebCamImage" color="white">
+                  {" "}
+                  <Webcam
+                    id="WebCamImage"
+                    audio={false}
+                    height={200}
+                    ref={ref}
+                    screenshotFormat="image/jpeg"
+                    width={300}
+                    videoConstraints={videoConstraints}
+                    style={{ backgroundColor: "white" }}
+                  />{" "}
+                </Box>
+              ) : null}
 
+              <Button
+                fullWidth
+                id="IdSelectionButton"
+                className="Tap"
+                color="sucess"
+                name="clickme"
+                disabled={!this.state.isclick}
+                onClick={this.capture}
+              >
+                CLICK HERE
+              </Button>
+            </div>
+          ) : null}
+        </div>
 
-        { dis ? <div> 
-          <Typography variant="subtitle1" id="WebCamText">
-         
-            Take the picture of  {this.state.side} side of your {this.state.id}
-         
-          </Typography>
-             
-        
+        <div id="WebCamBox">
+          {img ? (
+            <div>
+              <div>
+                <strong>
+                  The Preview of {this.state.side} side of {this.state.id} :
+                </strong>
+              </div>
+              <div>
+                <img id="WebCamImage" src={img} />
+              </div>
 
-          {this.state.looksgood?  <Box id="WebCamImage" color='white'> <Webcam id="WebCamImage" audio={false} height={200} ref={ref} screenshotFormat="image/jpeg"
-                       width={300} videoConstraints={videoConstraints} style={{backgroundColor:'white'}}/>  </Box>:null}
-          
+              <div id="WebCamButtonRow">
+                <Button
+                  id="WebCamPageTwoButtons"
+                  className="Tap"
+                  color="sucess"
+                  type="radio"
+                  name="retake"
+                  disabled={this.state.retake}
+                  onClick={this.changeHandler}
+                >
+                  RETAKE
+                </Button>
 
-                    <Button 
-                       fullWidth 
-                       id="IdSelectionButton" className="Tap" color="sucess" name='clickme' disabled={!this.state.isclick} onClick={this.capture}>CLICK HERE</Button>
+                <Button
+                  id="WebCamPageTwoButtons"
+                  className="Tap"
+                  color="sucess"
+                  type="radio"
+                  name="looksgood"
+                  disabled={this.state.retake}
+                  onClick={this.changeHandler}
+                >
+                  LOOKS GOOD
+                </Button>
+              </div>
 
+              <p>{this.state.id}</p>
+            </div>
+          ) : null}
 
-                       </div>:null  }
+          <p>
+            {" "}
+            <EnhancedEncryptionIcon /> Your Goverment Id will be used only for
+            KYC purpose
+          </p>
 
-
-
-            </div>     
-  
-         
-          <div id="WebCamBox" >
-
-
-
-                   {img?
-                   <div>
-                     <div>
-                      <strong>
-                         The Preview of {this.state.side} side of {this.state.id} :  
-                      </strong>
-                     </div>
-                       <div>
-                        <img id="WebCamImage" src={img}/>
-                       </div>
-                    
-                    <div id="WebCamButtonRow"> 
-                      <Button id="WebCamPageTwoButtons" className="Tap" color="sucess" type='radio' name='retake'  disabled={this.state.retake} onClick={this.changeHandler}>RETAKE</Button>
-                   
-                       <Button id="WebCamPageTwoButtons" className="Tap" color="sucess" type='radio'name="looksgood"   disabled={this.state.retake} onClick={this.changeHandler} >LOOKS GOOD</Button>
-                    </div>
-
-                       <p>{this.state.id}</p>
-                       </div>:null}
-                       
-
-               <p> <EnhancedEncryptionIcon /> Your Goverment Id will be used only for KYC
-                purpose</p>
-              
-                       <Button fullWidth id="WebCamPageSubmit" className="Tap" type='submit' name='submit' onClick={this.HandleSubmit}>
-                         SUBMIT
-                        </Button>
-                  
-                    
-
-                   
- 
-
-
-       </div>
+          <Button
+            fullWidth
+            id="WebCamPageSubmit"
+            className="Tap"
+            type="submit"
+            name="submit"
+            onClick={this.HandleSubmit}
+          >
+            SUBMIT
+          </Button>
+        </div>
       </div>
-    
-      );
-                   }
+    );
+  }
 }
 export default WebCamCapture;

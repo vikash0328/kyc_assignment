@@ -6,24 +6,22 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CardMedia from "@material-ui/core/CardMedia";
 import EnhancedEncryptionIcon from "@material-ui/icons/EnhancedEncryption";
-import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import CameraFrontIcon from "@material-ui/icons/CameraFront";
 import history from "../history";
-import Button from '@material-ui/core/Button';
-import verifyIdentity from '../Assets/SelfiePage1.png';
+import verifyIdentity from "../Assets/SelfiePage1.png";
+import PlaceholderImage from "../Assets/download.jpg";
 
 const MySkeleton = styled(Skeleton)({
   alignItems: "center",
   textalign: "center",
 });
 const logOut = () => {
-  localStorage.removeItem("auth")
+  localStorage.removeItem("auth");
   history.push("/");
-}
+};
 
 class TakePhoto extends React.Component {
   constructor(props) {
@@ -49,7 +47,9 @@ class TakePhoto extends React.Component {
     this.video.height = "200";
     this.video.play();
     this.webcam = new WebCam(this.video, this.CanvasElement, this.context);
-    this.webcam.SetUp().catch((err) => {alert(err)});
+    this.webcam.SetUp().catch((err) => {
+      alert(err);
+    });
     this.webcam.setup2();
   }
   handleOnClick = (ev) => {
@@ -87,7 +87,6 @@ class TakePhoto extends React.Component {
         disabled={clickme}
         onClick={this.handleOnClick}
         style={{ backgroundColor: "green" }}
-        
       >
         CLICK <CameraFrontIcon fontSize="large" />
       </button>
@@ -102,116 +101,96 @@ class TakePhoto extends React.Component {
         onClick={this.handleOnClick}
       >
         <strong>RETAKE</strong>
-        
       </button>
     );
-    const looksgoodbutton = (
-      
-      <button
-        id="TwoButtons"
-        name="looksgood"
-        className="button"
-        disabled={!clickme || retake}
-        onClick={this.handleOnClick}
-        style={{ backgroundColor: "green" }}
-      >
-        <strong>LOOKSGOOD</strong>
-        
-      </button>
-    );
-    const IMAGE = img ? img : sessionStorage.getItem("img");
+    // const looksgoodbutton = (
+    //   <button
+    //     id="TwoButtons"
+    //     name="looksgood"
+    //     className="button"
+    //     disabled={!clickme || retake}
+    //     onClick={this.handleOnClick}
+    //     style={{ backgroundColor: "green" }}
+    //   >
+    //     <strong>LOOKSGOOD</strong>
+    //   </button>
+    // );
+    const IMAGE = img ? sessionStorage.getItem("img") : PlaceholderImage;
 
     return (
       <div className="App-header">
-        {localStorage.getItem("auth") ? <button onClick={logOut}>logout</button> : null}
+        {localStorage.getItem("auth") ? (
+          <button onClick={logOut}>logout</button>
+        ) : null}
         <Container id="PageContainer">
-          
-            <Card className="HeaderCard" id="HeaderCard">
+          <Card className="HeaderCard" id="HeaderCard">
+            <h3 id="SelfiePageDefault" class="text-center default-text">
+              Please verify your Identity
+            </h3>
 
+            <p id="SelfiePageHeading" className="heading">
+              <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img>
+              Please provide personal details for KYC verification
+            </p>
+          </Card>
 
+          <Card id="CaptureCard">
+            <h3 id="SelfiePageDefault" class="text-center default-text">
+              Take a Selfie
+            </h3>
+            <CardContent color="secondary" id="CaptureCardContent">
+              {" "}
+              <Typography id="ContentText">
+                Make sure your whole face is clearly visible without any glare
+                or blur.Make sure that your whole face will fit inside oval
+              </Typography>{" "}
+            </CardContent>{" "}
+            <canvas id="cancamera" width="300" height="200"></canvas>
+            <CardActions id="SelfiePageClickButton">{clickbutton}</CardActions>
+          </Card>
 
-                <h3 id="SelfiePageDefault" class="text-center default-text">Please verify your Identity</h3>
-  
-                 <p id="SelfiePageHeading" className="heading">
+          <Card id="CaptureCard">
+            <h2 id="SelfiePageDefault" class="text-center default-text">
+              Preview
+            </h2>
 
-                 <img src={verifyIdentity} id="VerifyLogo" alt="VerifyLogo"></img> 
-                  Please provide personal details for KYC verification
-                 </p>
+            <CardContent id="PreviewImage">
+              {IMAGE ? (
+                <div>
+                  <img
+                    id="SelfiePagePreviewImage"
+                    src={IMAGE}
+                    alt="You see your Selfie here "
+                  />
+                </div>
+              ) : (
+                <MySkeleton
+                  variant="react"
+                  width={200}
+                  height={200}
+                  animation={false}
+                ></MySkeleton>
+              )}
+            </CardContent>
 
-            </Card>
+            <CardActions id="SelfiePageTwoButtons">{retakebutton}</CardActions>
 
-            <Card id="CaptureCard">
+            <CardContent id="ContentText">
+              <EnhancedEncryptionIcon /> Your Photo will be used only for KYC
+              purpose
+            </CardContent>
 
-            <h3 id="SelfiePageDefault" class="text-center default-text">Take a Selfie</h3>
-
-              <CardContent color='secondary' id="CaptureCardContent" > 
-                {" "}
-                <Typography id="ContentText">
-                  Make sure your whole face is clearly visible without any glare
-                  or blur.Make sure that your whole face will fit inside oval
-                </Typography>{" "}
-              </CardContent>
-
-              
-                {" "}
-                <canvas id="cancamera" width="300" height="200"></canvas>
-              
-              <CardActions id ="SelfiePageClickButton">{clickbutton}</CardActions>
-            </Card>
-
-
-
- 
-            <Card id="CaptureCard">
-              
-              <h2 id="SelfiePageDefault" class="text-center default-text">Preview</h2>
-               
-
-             
-
-              
-              <CardContent id="PreviewImage">
-                {IMAGE ? (
-                  <div>
-                    <img id="SelfiePagePreviewImage" src={IMAGE} alt="You see your Selfie here " />
-                  </div>
-                ) : (
-                  <MySkeleton
-                    variant="react"
-                    width={200}
-                    height={200}
-                    animation={false}
-                  ></MySkeleton>
-                )}
-              </CardContent>
-
-              <CardActions id="SelfiePageTwoButtons" >
-                {retakebutton} <span></span> {looksgoodbutton}
-              </CardActions>
-
-
-              <CardContent id="ContentText">
-
-                <EnhancedEncryptionIcon /> Your Photo will be used only for KYC
-                purpose
-              </CardContent>
-
-              <button
-              id ="SelfiePageSubmitButton"
-                fullWidth
-                name="submit"
-                className="button"
-                style={{ backgroundColor: "green" }}
-                onClick={this.handleOnClick}
-              >
-                <strong>
-                SAVE & CONTINUE 
-                </strong>
-
-                
-              </button>
-            </Card>
-         
+            <button
+              id="SelfiePageSubmitButton"
+              fullWidth
+              name="submit"
+              className="button"
+              style={{ backgroundColor: "green" }}
+              onClick={this.handleOnClick}
+            >
+              <strong>SAVE & CONTINUE</strong>
+            </button>
+          </Card>
         </Container>
       </div>
     );

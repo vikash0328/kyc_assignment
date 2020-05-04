@@ -31,7 +31,7 @@ function FormUserAuth(props) {
   const verifypass = (event) => {
     event.preventDefault();
 
-    fetch(`https://appkyc.free.beeceptor.com`)
+    fetch(`https://finalkyc.free.beeceptor.com`)
       // We get the API response and receive data in JSON format...
       .then((response) => response.json())
       // ...then we update the users state

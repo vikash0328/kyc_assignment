@@ -1,13 +1,11 @@
 import React from "react";
 import { withRouter, Redirect } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import "../Css/Docs.css";
-import { green } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import history from "../history";
 var CryptoJS = require("crypto-js");
 
-class Preview extends React.Component {
+class Preview extends React.Component { 
   constructor(props) {
     super(props);
     this.state = {
@@ -53,9 +51,9 @@ class Preview extends React.Component {
       localStorage.removeItem("DocsBox");
       sessionStorage.clear();
       history.push("/");
-    //   window.onbeforeunload = function() {
-    //     localStorage.clear();
-    //  }
+        window.onbeforeunload = function() {
+          localStorage.clear();
+       }
       window.location.reload();
     }
     ev.preventDefault();

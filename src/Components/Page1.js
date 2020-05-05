@@ -12,9 +12,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import loginLogo from "../Assets/login.jpg";
 
-window.onbeforeunload = function() {
-  localStorage.clear();
-}
+// window.onbeforeunload = function() {
+//   localStorage.clear();
+// }
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
